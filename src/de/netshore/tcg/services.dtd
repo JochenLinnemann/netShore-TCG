@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!--
+           Copyright 2005, 2017 Jochen Linnemann
+
+           Licensed under the Apache License, Version 2.0 (the "License");
+           you may not use this file except in compliance with the License.
+           You may obtain a copy of the License at
+
+               http://www.apache.org/licenses/LICENSE-2.0
+
+           Unless required by applicable law or agreed to in writing, software
+           distributed under the License is distributed on an "AS IS" BASIS,
+           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           See the License for the specific language governing permissions and
+           limitations under the License.
+        -->
+        <!ELEMENT services (service+)>
+
+        <!ELEMENT service (enlistment,survival,commission,promotion,reenlistment,ranks,mustering-out,skills)>
+        <!ATTLIST service
+                name CDATA #REQUIRED
+                draft (0|1|2|3|4|5|6) #REQUIRED
+                >
+
+        <!ELEMENT enlistment (str|dex|end|int|edu|soc)*>
+        <!ATTLIST enlistment min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED>
+
+        <!ELEMENT survival (str|dex|end|int|edu|soc)?>
+        <!ATTLIST survival min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED>
+
+        <!ELEMENT commission (str|dex|end|int|edu|soc)?>
+        <!ATTLIST commission min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #IMPLIED>
+
+        <!ELEMENT promotion (str|dex|end|int|edu|soc)?>
+        <!ATTLIST promotion min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #IMPLIED>
+
+        <!ELEMENT reenlistment EMPTY>
+        <!ATTLIST reenlistment min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED>
+
+        <!ELEMENT ranks (r1?,r2?,r3?,r4?,r5?,r6?)>
+        <!ATTLIST ranks
+                without CDATA #REQUIRED
+                prefix CDATA #REQUIRED
+                >
+        <!ELEMENT r1 EMPTY>
+        <!ATTLIST r1 name CDATA #REQUIRED>
+        <!ELEMENT r2 EMPTY>
+        <!ATTLIST r2 name CDATA #REQUIRED>
+        <!ELEMENT r3 EMPTY>
+        <!ATTLIST r3 name CDATA #REQUIRED>
+        <!ELEMENT r4 EMPTY>
+        <!ATTLIST r4 name CDATA #REQUIRED>
+        <!ELEMENT r5 EMPTY>
+        <!ATTLIST r5 name CDATA #REQUIRED>
+        <!ELEMENT r6 EMPTY>
+        <!ATTLIST r6 name CDATA #REQUIRED>
+
+        <!ELEMENT mustering-out (benefits,cash)>
+
+        <!ELEMENT benefits (b1,b2,b3,b4,b5,b6?,b7?)>
+        <!ELEMENT b1 EMPTY>
+        <!ATTLIST b1 name CDATA #REQUIRED>
+        <!ELEMENT b2 EMPTY>
+        <!ATTLIST b2 name CDATA #REQUIRED>
+        <!ELEMENT b3 EMPTY>
+        <!ATTLIST b3 name CDATA #REQUIRED>
+        <!ELEMENT b4 EMPTY>
+        <!ATTLIST b4 name CDATA #REQUIRED>
+        <!ELEMENT b5 EMPTY>
+        <!ATTLIST b5 name CDATA #REQUIRED>
+        <!ELEMENT b6 EMPTY>
+        <!ATTLIST b6 name CDATA #REQUIRED>
+        <!ELEMENT b7 EMPTY>
+        <!ATTLIST b7 name CDATA #REQUIRED>
+
+        <!ELEMENT cash (c1,c2,c3,c4,c5,c6,c7)>
+        <!ELEMENT c1 EMPTY>
+        <!ATTLIST c1 name CDATA #REQUIRED>
+        <!ELEMENT c2 EMPTY>
+        <!ATTLIST c2 name CDATA #REQUIRED>
+        <!ELEMENT c3 EMPTY>
+        <!ATTLIST c3 name CDATA #REQUIRED>
+        <!ELEMENT c4 EMPTY>
+        <!ATTLIST c4 name CDATA #REQUIRED>
+        <!ELEMENT c5 EMPTY>
+        <!ATTLIST c5 name CDATA #REQUIRED>
+        <!ELEMENT c6 EMPTY>
+        <!ATTLIST c6 name CDATA #REQUIRED>
+        <!ELEMENT c7 EMPTY>
+        <!ATTLIST c7 name CDATA #REQUIRED>
+
+        <!ELEMENT skills (automatic-skills,personal-development,service-skills,advanced-education,advanced-education-edu8plus)>
+        <!ATTLIST skills eligibility (1|2) #REQUIRED>
+
+        <!ELEMENT automatic-skills (r0?,r1?,r2?,r3?,r4?,r5?,r6?)>
+        <!ELEMENT r0 EMPTY>
+        <!ATTLIST r0 name CDATA #REQUIRED>
+
+        <!ELEMENT personal-development (s1,s2,s3,s4,s5,s6)>
+        <!ELEMENT service-skills (s1,s2,s3,s4,s5,s6)>
+        <!ELEMENT advanced-education (s1,s2,s3,s4,s5,s6)>
+        <!ELEMENT advanced-education-edu8plus (s1,s2,s3,s4,s5,s6)>
+        <!ELEMENT s1 EMPTY>
+        <!ATTLIST s1 name CDATA #REQUIRED>
+        <!ELEMENT s2 EMPTY>
+        <!ATTLIST s2 name CDATA #REQUIRED>
+        <!ELEMENT s3 EMPTY>
+        <!ATTLIST s3 name CDATA #REQUIRED>
+        <!ELEMENT s4 EMPTY>
+        <!ATTLIST s4 name CDATA #REQUIRED>
+        <!ELEMENT s5 EMPTY>
+        <!ATTLIST s5 name CDATA #REQUIRED>
+        <!ELEMENT s6 EMPTY>
+        <!ATTLIST s6 name CDATA #REQUIRED>
+
+        <!ELEMENT str EMPTY>
+        <!ATTLIST str
+                min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED
+                dm (1|2) #REQUIRED
+                >
+        <!ELEMENT dex EMPTY>
+        <!ATTLIST dex
+                min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED
+                dm (1|2) #REQUIRED
+                >
+        <!ELEMENT end EMPTY>
+        <!ATTLIST end
+                min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED
+                dm (1|2) #REQUIRED
+                >
+        <!ELEMENT int EMPTY>
+        <!ATTLIST int
+                min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED
+                dm (1|2) #REQUIRED
+                >
+        <!ELEMENT edu EMPTY>
+        <!ATTLIST edu
+                min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED
+                dm (1|2) #REQUIRED
+                >
+        <!ELEMENT soc EMPTY>
+        <!ATTLIST soc
+                min (1|2|3|4|5|6|7|8|9|10|11|12|13|14|15) #REQUIRED
+                dm (1|2) #REQUIRED
+                >

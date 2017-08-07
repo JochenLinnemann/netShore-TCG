@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE services SYSTEM "services.dtd">
+<!--
+   Copyright 2005, 2017 Jochen Linnemann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<services>
+    <service name="Navy" draft="1">
+        <enlistment min="8">
+            <int min="8" dm="1"/>
+            <edu min="9" dm="2"/>
+        </enlistment>
+        <survival min="5">
+            <int min="7" dm="2"/>
+        </survival>
+        <commission min="10">
+            <soc min="9" dm="1"/>
+        </commission>
+        <promotion min="8">
+            <edu min="8" dm="1"/>
+        </promotion>
+        <reenlistment min="6"/>
+        <ranks without="Navy Starman" prefix="Navy">
+            <r1 name="Ensign"/>
+            <r2 name="Lieutenant"/>
+            <r3 name="Lieutenant Commander"/>
+            <r4 name="Commander"/>
+            <r5 name="Captain"/>
+            <r6 name="Admiral"/>
+        </ranks>
+        <mustering-out>
+            <benefits>
+                <b1 name="Low Passage"/>
+                <b2 name="Int+1"/>
+                <b3 name="Edu+2"/>
+                <b4 name="Blade"/>
+                <b5 name="Travellers' Aid"/>
+                <b6 name="High Passage"/>
+                <b7 name="Soc+2"/>
+            </benefits>
+            <cash>
+                <c1 name="1000"/>
+                <c2 name="5000"/>
+                <c3 name="5000"/>
+                <c4 name="10000"/>
+                <c5 name="20000"/>
+                <c6 name="50000"/>
+                <c7 name="50000"/>
+            </cash>
+        </mustering-out>
+        <skills eligibility="1">
+            <automatic-skills>
+                <r5 name="Soc+1"/>
+                <r6 name="Soc+1"/>
+            </automatic-skills>
+            <personal-development>
+                <s1 name="Str+1"/>
+                <s2 name="Dex+1"/>
+                <s3 name="End+1"/>
+                <s4 name="Int+1"/>
+                <s5 name="Edu+1"/>
+                <s6 name="Soc+1"/>
+            </personal-development>
+            <service-skills>
+                <s1 name="Ship's Boat"/>
+                <s2 name="Vacc Suit"/>
+                <s3 name="Forward Observer"/>
+                <s4 name="Gunnery"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Gun Combat"/>
+            </service-skills>
+            <advanced-education>
+                <s1 name="Vacc Suit"/>
+                <s2 name="Mechanical"/>
+                <s3 name="Electronics"/>
+                <s4 name="Engineering"/>
+                <s5 name="Gunnery"/>
+                <s6 name="Jack of All Trades"/>
+            </advanced-education>
+            <advanced-education-edu8plus>
+                <s1 name="Medical"/>
+                <s2 name="Navigation"/>
+                <s3 name="Egineering"/>
+                <s4 name="Computer"/>
+                <s5 name="Pilot"/>
+                <s6 name="Administration"/>
+            </advanced-education-edu8plus>
+        </skills>
+    </service>
+    <service name="Marines" draft="2">
+        <enlistment min="9">
+            <int min="8" dm="1"/>
+            <str min="8" dm="2"/>
+        </enlistment>
+        <survival min="6">
+            <end min="8" dm="2"/>
+        </survival>
+        <commission min="9">
+            <edu min="7" dm="1"/>
+        </commission>
+        <promotion min="9">
+            <soc min="8" dm="1"/>
+        </promotion>
+        <reenlistment min="6"/>
+        <ranks without="Marine" prefix="Marine">
+            <r1 name="Lieutenant"/>
+            <r2 name="Captain"/>
+            <r3 name="Force Commander"/>
+            <r4 name="Lieutenant Colonel"/>
+            <r5 name="Colonel"/>
+            <r6 name="Brigadier"/>
+        </ranks>
+        <mustering-out>
+            <benefits>
+                <b1 name="Low Passage"/>
+                <b2 name="Int+2"/>
+                <b3 name="Edu+1"/>
+                <b4 name="Blade"/>
+                <b5 name="Travellers' Aid"/>
+                <b6 name="High Passage"/>
+                <b7 name="Soc+2"/>
+            </benefits>
+            <cash>
+                <c1 name="2000"/>
+                <c2 name="5000"/>
+                <c3 name="5000"/>
+                <c4 name="10000"/>
+                <c5 name="20000"/>
+                <c6 name="30000"/>
+                <c7 name="40000"/>
+            </cash>
+        </mustering-out>
+        <skills eligibility="1">
+            <automatic-skills>
+                <r0 name="Cutlass"/>
+                <r1 name="Revolver"/>
+            </automatic-skills>
+            <personal-development>
+                <s1 name="Str+1"/>
+                <s2 name="Dex+1"/>
+                <s3 name="End+1"/>
+                <s4 name="Gambling"/>
+                <s5 name="Brawling"/>
+                <s6 name="Blade Combat"/>
+            </personal-development>
+            <service-skills>
+                <s1 name="Vehicle"/>
+                <s2 name="Vacc Suit"/>
+                <s3 name="Blade Combat"/>
+                <s4 name="Gun Combat"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Gun Combat"/>
+            </service-skills>
+            <advanced-education>
+                <s1 name="Vehicle"/>
+                <s2 name="Mechanical"/>
+                <s3 name="Electronics"/>
+                <s4 name="Tactics"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Gun Combat"/>
+            </advanced-education>
+            <advanced-education-edu8plus>
+                <s1 name="Medical"/>
+                <s2 name="Tactics"/>
+                <s3 name="Tactics"/>
+                <s4 name="Computer"/>
+                <s5 name="Leader"/>
+                <s6 name="Administration"/>
+            </advanced-education-edu8plus>
+        </skills>
+    </service>
+    <service name="Army" draft="3">
+        <enlistment min="5">
+            <dex min="6" dm="1"/>
+            <end min="5" dm="2"/>
+        </enlistment>
+        <survival min="5">
+            <edu min="6" dm="2"/>
+        </survival>
+        <commission min="5">
+            <end min="7" dm="1"/>
+        </commission>
+        <promotion min="6">
+            <edu min="7" dm="1"/>
+        </promotion>
+        <reenlistment min="7"/>
+        <ranks without="Army Trooper" prefix="Army">
+            <r1 name="Lieutenant"/>
+            <r2 name="Captain"/>
+            <r3 name="Major"/>
+            <r4 name="Lieutenant Colonel"/>
+            <r5 name="Colonel"/>
+            <r6 name="General"/>
+        </ranks>
+        <mustering-out>
+            <benefits>
+                <b1 name="Low Passage"/>
+                <b2 name="Int+1"/>
+                <b3 name="Edu+2"/>
+                <b4 name="Gun"/>
+                <b5 name="High Passage"/>
+                <b6 name="Middle Passage"/>
+                <b7 name="Soc+1"/>
+            </benefits>
+            <cash>
+                <c1 name="2000"/>
+                <c2 name="5000"/>
+                <c3 name="10000"/>
+                <c4 name="10000"/>
+                <c5 name="10000"/>
+                <c6 name="20000"/>
+                <c7 name="30000"/>
+            </cash>
+        </mustering-out>
+        <skills eligibility="1">
+            <automatic-skills>
+                <r0 name="Rifle"/>
+                <r1 name="SMG"/>
+            </automatic-skills>
+            <personal-development>
+                <s1 name="Str+1"/>
+                <s2 name="Dex+1"/>
+                <s3 name="End+1"/>
+                <s4 name="Gambling"/>
+                <s5 name="Edu+1"/>
+                <s6 name="Brawling"/>
+            </personal-development>
+            <service-skills>
+                <s1 name="Vehicle"/>
+                <s2 name="Air/Raft"/>
+                <s3 name="Gun Combat"/>
+                <s4 name="Forward Observer"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Gun Combat"/>
+            </service-skills>
+            <advanced-education>
+                <s1 name="Vehicle"/>
+                <s2 name="Mechanical"/>
+                <s3 name="Electronics"/>
+                <s4 name="Tactics"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Gun Combat"/>
+            </advanced-education>
+            <advanced-education-edu8plus>
+                <s1 name="Medical"/>
+                <s2 name="Tactics"/>
+                <s3 name="Tactics"/>
+                <s4 name="Computer"/>
+                <s5 name="Leader"/>
+                <s6 name="Administration"/>
+            </advanced-education-edu8plus>
+        </skills>
+    </service>
+    <service name="Scouts" draft="4">
+        <enlistment min="7">
+            <int min="6" dm="1"/>
+            <str min="8" dm="2"/>
+        </enlistment>
+        <survival min="7">
+            <end min="9" dm="2"/>
+        </survival>
+        <commission/>
+        <promotion/>
+        <reenlistment min="3"/>
+        <ranks without="Scout" prefix="Scout"/>
+        <mustering-out>
+            <benefits>
+                <b1 name="Low Passage"/>
+                <b2 name="Int+2"/>
+                <b3 name="Edu+2"/>
+                <b4 name="Blade"/>
+                <b5 name="Gun"/>
+                <b6 name="Scout Ship"/>
+            </benefits>
+            <cash>
+                <c1 name="20000"/>
+                <c2 name="20000"/>
+                <c3 name="30000"/>
+                <c4 name="30000"/>
+                <c5 name="50000"/>
+                <c6 name="50000"/>
+                <c7 name="50000"/>
+            </cash>
+        </mustering-out>
+        <skills eligibility="2">
+            <automatic-skills>
+                <r0 name="Pilot"/>
+            </automatic-skills>
+            <personal-development>
+                <s1 name="Str+1"/>
+                <s2 name="Dex+1"/>
+                <s3 name="End+1"/>
+                <s4 name="Int+1"/>
+                <s5 name="Edu+1"/>
+                <s6 name="Gun Combat"/>
+            </personal-development>
+            <service-skills>
+                <s1 name="Vehicle"/>
+                <s2 name="Vacc Suit"/>
+                <s3 name="Mechanical"/>
+                <s4 name="Navigation"/>
+                <s5 name="Electronics"/>
+                <s6 name="Jack of All Trades"/>
+            </service-skills>
+            <advanced-education>
+                <s1 name="Vehicle"/>
+                <s2 name="Mechanical"/>
+                <s3 name="Electronics"/>
+                <s4 name="Jack of All Trades"/>
+                <s5 name="Gunnery"/>
+                <s6 name="Medical"/>
+            </advanced-education>
+            <advanced-education-edu8plus>
+                <s1 name="Medical"/>
+                <s2 name="Navigation"/>
+                <s3 name="Engineering"/>
+                <s4 name="Computer"/>
+                <s5 name="Pilot"/>
+                <s6 name="Jack of All Trades"/>
+            </advanced-education-edu8plus>
+        </skills>
+    </service>
+    <service name="Merchant" draft="5">
+        <enlistment min="7">
+            <str min="7" dm="1"/>
+            <int min="6" dm="2"/>
+        </enlistment>
+        <survival min="5">
+            <int min="7" dm="2"/>
+        </survival>
+        <commission min="4">
+            <int min="6" dm="1"/>
+        </commission>
+        <promotion min="10">
+            <int min="9" dm="1"/>
+        </promotion>
+        <reenlistment min="4"/>
+        <ranks without="Merchant" prefix="Merchant">
+            <r1 name="4th Officer"/>
+            <r2 name="3rd Officer"/>
+            <r3 name="2nd Officer"/>
+            <r4 name="1st Officer"/>
+            <r5 name="Captain"/>
+        </ranks>
+        <mustering-out>
+            <benefits>
+                <b1 name="Low Passage"/>
+                <b2 name="Int+1"/>
+                <b3 name="Edu+1"/>
+                <b4 name="Gun"/>
+                <b5 name="Blade"/>
+                <b6 name="Low Passage"/>
+                <b7 name="Free Trader"/>
+            </benefits>
+            <cash>
+                <c1 name="1000"/>
+                <c2 name="5000"/>
+                <c3 name="10000"/>
+                <c4 name="20000"/>
+                <c5 name="20000"/>
+                <c6 name="40000"/>
+                <c7 name="40000"/>
+            </cash>
+        </mustering-out>
+        <skills eligibility="1">
+            <automatic-skills>
+                <r4 name="Pilot"/>
+            </automatic-skills>
+            <personal-development>
+                <s1 name="Str+1"/>
+                <s2 name="Dex+1"/>
+                <s3 name="End+1"/>
+                <s4 name="Str+1"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Bribery"/>
+            </personal-development>
+            <service-skills>
+                <s1 name="Vehicle"/>
+                <s2 name="Vacc Suit"/>
+                <s3 name="Jack of All Trades"/>
+                <s4 name="Steward"/>
+                <s5 name="Electronics"/>
+                <s6 name="Gun Combat"/>
+            </service-skills>
+            <advanced-education>
+                <s1 name="Streetwise"/>
+                <s2 name="Mechanical"/>
+                <s3 name="Electronics"/>
+                <s4 name="Navigation"/>
+                <s5 name="Gunnery"/>
+                <s6 name="Medical"/>
+            </advanced-education>
+            <advanced-education-edu8plus>
+                <s1 name="Medical"/>
+                <s2 name="Navigation"/>
+                <s3 name="Engineering"/>
+                <s4 name="Computer"/>
+                <s5 name="Pilot"/>
+                <s6 name="Administration"/>
+            </advanced-education-edu8plus>
+        </skills>
+    </service>
+    <service name="Other" draft="6">
+        <enlistment min="3"/>
+        <survival min="5">
+            <int min="9" dm="2"/>
+        </survival>
+        <commission/>
+        <promotion/>
+        <reenlistment min="5"/>
+        <ranks without="Other" prefix="Other"/>
+        <mustering-out>
+            <benefits>
+                <b1 name="Low Passage"/>
+                <b2 name="Int+1"/>
+                <b3 name="Edu+1"/>
+                <b4 name="Gun"/>
+                <b5 name="High Passage"/>
+            </benefits>
+            <cash>
+                <c1 name="1000"/>
+                <c2 name="5000"/>
+                <c3 name="10000"/>
+                <c4 name="10000"/>
+                <c5 name="10000"/>
+                <c6 name="50000"/>
+                <c7 name="100000"/>
+            </cash>
+        </mustering-out>
+        <skills eligibility="1">
+            <automatic-skills/>
+            <personal-development>
+                <s1 name="Str+1"/>
+                <s2 name="Dex+1"/>
+                <s3 name="End+1"/>
+                <s4 name="Blade Combat"/>
+                <s5 name="Brawling"/>
+                <s6 name="Soc-1"/>
+            </personal-development>
+            <service-skills>
+                <s1 name="Vehicle"/>
+                <s2 name="Gambling"/>
+                <s3 name="Brawling"/>
+                <s4 name="Bribery"/>
+                <s5 name="Blade Combat"/>
+                <s6 name="Gun Combat"/>
+            </service-skills>
+            <advanced-education>
+                <s1 name="Streetwise"/>
+                <s2 name="Mechanical"/>
+                <s3 name="Electronics"/>
+                <s4 name="Gambling"/>
+                <s5 name="Brawling"/>
+                <s6 name="Forgery"/>
+            </advanced-education>
+            <advanced-education-edu8plus>
+                <s1 name="Medical"/>
+                <s2 name="Forgery"/>
+                <s3 name="Electronics"/>
+                <s4 name="Computer"/>
+                <s5 name="Streetwise"/>
+                <s6 name="Jack of All Trades"/>
+            </advanced-education-edu8plus>
+        </skills>
+    </service>
+</services>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     14.05.2005 20:12:59                                                        
+
+     netShore TCG    
+     Ein Character Generator für Traveller (CT)
+                   
+     jlin                                                                
+     ====================================================================== -->
+<project name="netShore TCG" default="buildjar" basedir=".">
+    <description>
+            Ein Character Generator für Traveller (CT)
+    </description>
+	
+	<property name="bin" location="${basedir}/bin"/>
+	<property name="lib" location="${basedir}/lib"/>
+	<property name="src" location="${basedir}/src"/>
+	
+	<property name="v0.9"  value="0.9"  description="v 0.9 rc 1 build"/>
+	<property name="v0.9a" value="0.9a" description="v 0.9 rc 2 build (including xml extensions)"/>
+	<property name="v0.9b" value="0.9b" description="v 0.9 rc 3 build (including supplement 4 - CotI)"/>
+	
+	<property name="current-version" value="${v0.9b}"/>
+	
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+    	<tstamp/>
+    </target>
+
+    <!-- ================================= 
+          target: makejar              
+         ================================= -->
+    <target name="buildjar" depends="init" description="--> Building distribution JAR">
+        <jar destfile="${lib}/netShore.TCG-${current-version}.jar" basedir="${bin}">
+        	<manifest>
+        		<attribute name="Main-Class" value="de.netshore.tcg.TCGApp"/>
+        	</manifest>
+		</jar>
+    </target>
+
+</project>
+

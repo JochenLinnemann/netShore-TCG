@@ -1,0 +1,254 @@
+<!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN" "url:unknown" -->
+<!--
+   Copyright 2005, 2017 Jochen Linnemann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<html>
+<head>
+	<title>netShore TCG character sheet</title>
+	<style type="text/css">{0}</style>
+</head>
+<body>
+	<table align="center" valign="top" cellpadding="10" width="600" style="border-width: 0px;">
+	<tr>
+		<td style="border-width: 0px;">
+			
+	<table align="center" valign="top" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<table align="center" valign="top" cellpadding="2" cellspacing="0" width="600">
+			<tr>
+				<td colspan="3"><big>PERSONAL DATA AND HISTORY</big></td>
+				<td colspan="1">
+					<small>1. Date of Preparation</small>
+					<div>{1}</div>
+				</td>
+			</tr>	
+			<tr>
+				<td colspan="3">
+					<small>2. Name</small>
+					<div>{2}</div>
+				</td>
+				<td colspan="1">
+					<small>3. UPP</small>
+					<div>{3}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1">
+					<small>4. Noble Title</small>
+					<div>{4}</div>
+				</td>
+				<td colspan="1">
+					<small>5. Military Rank</small>
+					<div>{5}</div>
+				</td>
+				<td colspan="2">
+					<small>6. Birthdate</small>
+					<div>{6}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<small>7. Age Modifiers <i>(+ for drugs; - for sleep)</i></small>
+					<div>{7}</div>
+				</td>
+				<td colspan="2">
+					<small>8. Birthworld</small>
+					<div>{8}</div>
+				</td>
+			</tr>
+			<tr style="border-width: 1px; border-style: solid; border-color: #000000;">
+				<td colspan="2" style="border-width: 0px;"><big>SERVICE HISTORY</big></td>
+				<td colspan="2" style="border-width: 0px;">Personal service data produced from appropriate historical and personal records.</td>
+			</tr>
+			<tr>
+				<td colspan="1">
+					<small>9. Service</small>
+					<div>{9}</div>
+				</td>
+				<td colspan="1">
+					<small>10. Branch</small>
+					<div>{10}</div>
+				</td>
+				<td colspan="2">
+					<small>11. Dischargeworld</small>
+					<div>{11}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" width="25%">
+					<small>12. Terms Served</small>
+					<div>{12}</div>
+				</td>
+				<td colspan="1" width="25%">
+					<small>13. Final Rank</small>
+					<div>{13}</div>
+				</td>
+				<td colspan="1" width="25%">
+					<small>14a. Retired?</small>
+					<div>{14,choice,0#No|0<Yes}</div>
+				</td>
+				<td colspan="1" width="25%">
+					<small>14b. Retirement Pay</small>
+					<div>{14,choice,0#|0<Cr{14,number,integer}}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="90">
+					<small>15. Special Assignments</small>
+					<div>{15}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="90">
+					<small>16. Awards and Decorations <i>(include Combat Commands, Commendations, Medals, etc.)</i></small>
+					<div>{16}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="90">
+					<small>17. Equipment Qualified On</small>
+					<div>{17}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<small>18a. Primary Skill</small>
+					<div>&nbsp;</div>
+				</td>
+				<td colspan="2">
+					<small>18b. Secondary Skill</small>
+					<div>&nbsp;</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="90">
+					<small>18c. Additional Skills</small>
+					<div>{18}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1">
+					<small>19a. Preferred Weapon</small>
+					<div>{19}</div>
+				</td>
+				<td colspan="1">
+					<small>19b. Preferred Pistol</small>
+					<div>&nbsp;</div>
+				</td>
+				<td colspan="1">
+					<small>19c. Preferred Blade</small>
+					<div>&nbsp;</div>
+				</td>
+				<td colspan="1">
+					<small>20. TAS Member?</small>
+					<div>{20,choice,0#No|0<Yes}</div>
+				</td>
+			</tr>
+			<tr style="border-width: 1px; border-style: solid; border-color: #000000;">
+				<td colspan="1" style="border-width: 0px;"><big>PSIONICS</big></td>
+				<td colspan="3" style="border-width: 0px;"><i>Warning:</i> Information regarding an individual's psionic ability is confidential, and may not be released without consent.</td>
+			</tr>
+			<tr>
+				<td colspan="1">
+					<small>21. Date of Test</small>
+					<div>&nbsp;</div>
+				</td>
+				<td colspan="1">
+					<small>22. PSR</small>
+					<div>&nbsp;</div>
+				</td>
+				<td colspan="1">
+					<small>23a. Trained?</small>
+					<div>&nbsp;</div>
+				</td>
+				<td colspan="1">
+					<small>23b. Date Completed</small>
+					<div>&nbsp;</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="90">
+					<small>24. Talents and Current Levels</small>
+					<div>&nbsp;</div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<table align="center" valign="top" cellpadding="2" width="600" style="border-width: 0px;">
+	<tr>
+		<td style="border-width: 0px; font-size: 10px; font-weight: bold; text-align: left;">TAS Form 2</td>
+		<td style="border-width: 0px; font-size: 10px; font-weight: bold; text-align: right;">Personal Data And History</td>
+	</tr>
+	</table>
+	
+		</td>
+		</tr><tr>
+		<td style="border-width: 0px;">
+		
+	<table align="center" valign="top" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<table align="center" valign="top" cellpadding="2" cellspacing="0" width="600">
+			<tr>
+				<td colspan="4">
+					<small>25. Name</small>
+					<div>&nbsp;</div>
+				</td>
+			</tr>	
+			<tr style="border-width: 1px; border-style: solid; border-color: #000000;">
+				<td colspan="2" width="50%" style="border-width: 0px;"><big>CASH ACCOUNTS</big></td>
+				<td colspan="2" width="50%" style="border-width: 0px;">Data concerning the individual's financial affairs and cash availability.</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="180">
+					<small>26. Cash Status <i>(note cash available to the individual)</i></small>
+					<div>{26,choice,0#|0<Cr{26,number,integer}}</div>
+				</td>
+			</tr>
+			<tr style="border-width: 1px; border-style: solid; border-color: #000000;">
+				<td colspan="2" style="border-width: 0px;"><big>INVENTORY</big></td>
+				<td colspan="2" style="border-width: 0px;">Information on personal inventory and possessions, including vehicles.</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="180">
+					<small>27. Personal Possessions</small>
+					<div>{27}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" height="180">
+					<small>28. Vehicles</small>
+					<div>&nbsp;</div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<table align="center" valign="top" cellpadding="2" width="600" style="border-width: 0px;">
+	<tr>
+		<td style="border-width: 0px; font-size: 10px; font-weight: bold; text-align: left;">TAS Form 2 (Reverse)</td>
+		<td style="border-width: 0px; font-size: 10px; font-weight: bold; text-align: right;">Personal Data And History</td>
+	</tr>
+	</table>
+	
+		</td>
+	</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+/*
+   Copyright 2005, 2017 Jochen Linnemann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+body {
+    font-family: Arial, Helvetica, Geneva, sans-serif;
+    /*font-size: 12pt;*/
+    font-size: 10px;
+}
+
+table, td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    vertical-align: top;
+}
+
+td, small {
+    /*font-size: 10pt;*/
+    font-size: 9px;
+}
+
+big {
+    /*font-size: 14pt;*/
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div {
+    color: #000099;
+    padding-left: 10px;
+    /*font-size: 12pt;*/
+    font-size: 10px;
+    font-weight: bold;
+    text-align: left;
+}
