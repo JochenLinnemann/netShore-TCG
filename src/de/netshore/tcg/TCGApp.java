@@ -18,6 +18,7 @@
  */
 package de.netshore.tcg;
 
+import java.awt.Frame;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.logging.ConsoleHandler;
@@ -135,8 +136,8 @@ public class TCGApp {
 
         JFrame frame = TCGFramework.getInstance().populateContainer(new JFrame());
         frame.pack();
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.show();
+        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+        frame.setVisible(true);
     }
 
     private TCGApp() {

@@ -20,6 +20,7 @@ package de.netshore.tcg;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -37,8 +38,8 @@ import de.netshore.tcg.CharacterFactory.GenerationListener;
 public class CharacterCreationDialog extends CharacterDialog implements GenerationListener {
     private String originalTitle = "";
 
-    private Vector serviceHistory = new Vector();
-    private JList serviceHistoryDisplay = new JList();
+    private Vector<String> serviceHistory = new Vector<>();
+    private JList<String> serviceHistoryDisplay = new JList<>();
     private JScrollPane historyScroller = new JScrollPane(serviceHistoryDisplay);
 
     public CharacterCreationDialog(JFrame owner) {
@@ -72,7 +73,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
         setModal(modal);
         pack();
         setLocationRelativeTo(getOwner());
-        show();
+        setVisible(true);
     }
 
     /*
@@ -127,11 +128,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
     public int chooseSkillTable(String[] tableNames, String[][] skillTables) {
         showSkills();
 
-        Object[] options = new Object[tableNames.length];
-
-        for (int i = 0; i < options.length; i++) {
-            options[i] = tableNames[i];
-        }
+        Object[] options = Arrays.copyOf(tableNames, tableNames.length);
 
         Object selection = JOptionPane.showInputDialog(
                 this,

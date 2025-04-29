@@ -48,6 +48,8 @@ import de.netshore.tcg.xml.CharacterTransformer;
  * @author jlin
  */
 public class CharacterPanel extends JPanel {
+    private static final String HTML = ".html";
+
     public static final FileFilter tcdFilter = new FileFilter() {
         public boolean accept(File f) {
             return f.isDirectory() || f.getName().toLowerCase().endsWith(".tcd");
@@ -68,7 +70,7 @@ public class CharacterPanel extends JPanel {
     };
     public static final FileFilter htmlFilter = new FileFilter() {
         public boolean accept(File f) {
-            return f.isDirectory() || f.getName().toLowerCase().endsWith(".html");
+            return f.isDirectory() || f.getName().toLowerCase().endsWith(HTML);
         }
 
         public String getDescription() {
@@ -87,7 +89,7 @@ public class CharacterPanel extends JPanel {
     public CharacterPanel(File file, Character character) {
         this.file = file;
 
-        String initialData = "";
+        StringBuilder initialData = new StringBuilder();
         try {
             char[] buffer = new char[1024];
             int charCount = 0;
@@ -104,13 +106,13 @@ public class CharacterPanel extends JPanel {
             do {
                 charCount = reader.read(buffer);
                 if (charCount > 0) {
-                    initialData += String.copyValueOf(buffer, 0, charCount);
+                    initialData.append(String.copyValueOf(buffer, 0, charCount));
                 }
             } while (charCount > -1);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        data = new MessageFormat(initialData);
+        data = new MessageFormat(initialData.toString());
         viewer.setEditable(false);
         viewer.setContentType("text/html");
         viewer.setText("");
@@ -197,8 +199,8 @@ public class CharacterPanel extends JPanel {
         fileChooser.setSelectedFile(new File(getCharacter().getName()));
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File exportFile = fileChooser.getSelectedFile();
-            if (exportFile != null && !exportFile.getName().toLowerCase().endsWith(".html")) {
-                exportFile = new File(exportFile + ".html");
+            if (exportFile != null && !exportFile.getName().toLowerCase().endsWith(HTML)) {
+                exportFile = new File(exportFile + HTML);
             }
             try {
                 if (exportFile.exists()) {
@@ -247,9 +249,9 @@ public class CharacterPanel extends JPanel {
         arguments[9] = sanitize(character.getService());
         arguments[10] = sanitize(character.getBranch());
         arguments[11] = sanitize(character.getDischargeworld());
-        arguments[12] = new Integer(character.getTermsServed());
+        arguments[12] = Integer.valueOf(character.getTermsServed());
         arguments[13] = sanitize((character.getRankNum() > 0 ? character.getFinalRank() : ""));
-        arguments[14] = new Integer(character.getRetirementPay());
+        arguments[14] = Integer.valueOf(character.getRetirementPay());
         arguments[15] = sanitize(character.getSpecialAssignments());
         arguments[16] = sanitize(character.getAwardsAndDecorations());
         arguments[17] = sanitize(character.getEquipmentQualifiedOn());
@@ -264,13 +266,13 @@ public class CharacterPanel extends JPanel {
         }
         arguments[18] = sanitize(skills);
         arguments[19] = sanitize(character.getPreferredWeapon());
-        arguments[20] = new Integer(character.getPossessionNumberOfItems("Travellers' Aid"));
+        arguments[20] = Integer.valueOf(character.getPossessionNumberOfItems("Travellers' Aid"));
         arguments[21] = "";
         arguments[22] = "";
         arguments[23] = "";
         arguments[24] = "";
         arguments[25] = arguments[2];
-        arguments[26] = new Integer(character.getCash());
+        arguments[26] = Integer.valueOf(character.getCash());
         String possessions = "";
         PossessionIterator possIter = character.possessionIterator();
         while (possIter.hasNext()) {

@@ -48,13 +48,12 @@ public class ServiceFactory {
         TCGApp.debug(baseUri);
 
         try {
-            DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setExpandEntityReferences(false);
+
+            DocumentBuilder docBuilder = factory.newDocumentBuilder();
             services = getServices(docBuilder.parse(is, baseUri));
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 

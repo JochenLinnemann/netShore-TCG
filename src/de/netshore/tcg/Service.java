@@ -337,37 +337,37 @@ public class Service {
     }
 
     public String toString() {
-        String rankTable = "";
+        StringBuilder rankTab = new StringBuilder();
         if (getRanks() != null) {
-            String[] ranks = getRanks();
-            for (int i = 0; i < ranks.length; i++) {
-                rankTable += "\n\trank " + (i + 1) + ": " + ranks[i];
+            String[] r = getRanks();
+            for (int i = 0; i < r.length; i++) {
+                rankTab.append("\n\trank " + (i + 1) + ": " + r[i]);
             }
         } else {
-            rankTable = "\n\tno ranks";
+            rankTab.append("\n\tno ranks");
         }
 
-        String benefitTable = "";
+        StringBuilder benefitTab = new StringBuilder();
         if (getBenefits() != null) {
-            String[] benefits = getBenefits();
-            for (int i = 0; i < benefits.length; i++) {
-                benefitTable += "\n\tbenefit " + (i + 1) + ": " + benefits[i];
+            String[] b = getBenefits();
+            for (int i = 0; i < b.length; i++) {
+                benefitTab.append("\n\tbenefit " + (i + 1) + ": " + b[i]);
             }
         } else {
-            benefitTable = "\n\tno benefits";
+            benefitTab.append("\n\tno benefits");
         }
 
-        String cashTable = "";
+        StringBuilder cashTab = new StringBuilder();
         if (getCashTable() != null) {
             int[] cash = getCashTable();
             for (int i = 0; i < cash.length; i++) {
-                cashTable += "\n\tcash " + (i + 1) + ": " + cash[i];
+                cashTab.append("\n\tcash " + (i + 1) + ": " + cash[i]);
             }
         } else {
-            cashTable = "\n\tno cash table";
+            cashTab.append("\n\tno cash table");
         }
 
-        String skillsTable = "";
+        StringBuilder skillsTab = new StringBuilder();
         for (int i = 0; i <= 6; i++) {
             if (getAutomaticSkill(i) != null) {
                 String rank = null;
@@ -376,31 +376,31 @@ public class Service {
                 } else if ((i - 1) < getRanks().length) {
                     rank = getRankPrefix() + " " + getRanks()[i - 1];
                 }
-                skillsTable += "\n\t" + rank + ": " + getAutomaticSkill(i);
+                skillsTab.append("\n\t" + rank + ": " + getAutomaticSkill(i));
             }
         }
         if (getPersonalDevelopment() != null) {
             String[] persDev = getPersonalDevelopment();
             for (int i = 0; i < persDev.length; i++) {
-                skillsTable += "\n\tpersonal development " + (i + 1) + ": " + persDev[i];
+                skillsTab.append("\n\tpersonal development " + (i + 1) + ": " + persDev[i]);
             }
         }
         if (getServiceSkills() != null) {
-            String[] serviceSkills = getServiceSkills();
-            for (int i = 0; i < serviceSkills.length; i++) {
-                skillsTable += "\n\tservice skill " + (i + 1) + ": " + serviceSkills[i];
+            String[] svcSkills = getServiceSkills();
+            for (int i = 0; i < svcSkills.length; i++) {
+                skillsTab.append("\n\tservice skill " + (i + 1) + ": " + svcSkills[i]);
             }
         }
         if (getAdvancedEducation() != null) {
             String[] advEdu = getAdvancedEducation();
             for (int i = 0; i < advEdu.length; i++) {
-                skillsTable += "\n\tadvanced education " + (i + 1) + ": " + advEdu[i];
+                skillsTab.append("\n\tadvanced education " + (i + 1) + ": " + advEdu[i]);
             }
         }
         if (getAdvancedEducationEdu8Plus() != null) {
             String[] advEdu8Plus = getAdvancedEducationEdu8Plus();
             for (int i = 0; i < advEdu8Plus.length; i++) {
-                skillsTable += "\n\tadvanced education (Edu 8+) " + (i + 1) + ": " + advEdu8Plus[i];
+                skillsTab.append("\n\tadvanced education (Edu 8+) " + (i + 1) + ": " + advEdu8Plus[i]);
             }
         }
 
@@ -410,21 +410,19 @@ public class Service {
                 "\n\t" + (getCommission() != null ? "commission on " + getCommission() : "no commission") +
                 "\n\t" + (getPromotion() != null ? "promotion on " + getPromotion() : "no promotion") +
                 "\n\treenlistment on " + getReenlistment() +
-                rankTable +
-                benefitTable +
-                cashTable +
+                rankTab +
+                benefitTab +
+                cashTab +
                 "\n\tskill eligibility of " + getSkillEligibility() + " per subsequent term" +
-                skillsTable;
+                skillsTab;
     }
 
     public String getAutomaticSkill(int rankNum) {
         String autoSkillForRankNum = null;
 
         String[] autoSkills = getAutomaticSkills();
-        if (autoSkills != null) {
-            if (autoSkills.length > rankNum) {
-                autoSkillForRankNum = autoSkills[rankNum];
-            }
+        if (autoSkills != null && autoSkills.length > rankNum) {
+            autoSkillForRankNum = autoSkills[rankNum];
         }
 
         return autoSkillForRankNum;

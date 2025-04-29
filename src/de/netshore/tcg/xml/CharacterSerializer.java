@@ -28,7 +28,6 @@ import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
@@ -49,14 +48,23 @@ import de.netshore.tcg.Character;
  * @author jlin
  */
 public class CharacterSerializer {
+    private static final String FINAL_RANK = "finalRank";
+    private static final String CHARACTER = "character";
+
     public static Character read(File file) {
         try {
-            DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = docBuilder.parse(new FileInputStream(file),
-                    CharacterSerializer.class.getResource("").toExternalForm());
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setExpandEntityReferences(false);
+
+            DocumentBuilder docBuilder = factory.newDocumentBuilder();
+            Document doc;
+            try (FileInputStream fs = new FileInputStream(file)) {
+                doc = docBuilder.parse(fs,
+                        CharacterSerializer.class.getResource("").toExternalForm());
+            }
 
             Element root = doc.getDocumentElement();
-            if ("character".equals(root.getTagName())) {
+            if (CHARACTER.equals(root.getTagName())) {
                 if ("0.9".equals(root.getAttribute("version"))) {
                     Character character = new Character();
 
@@ -83,9 +91,9 @@ public class CharacterSerializer {
                     character.setBranch(extractTextNodeValue(doc, "branch"));
                     character.setDischargeworld(extractTextNodeValue(doc, "dischargeworld"));
                     character.setTermsServed(Integer.parseInt(extractTextNodeValue(doc, "termsServed")));
-                    character.setRankPrefix(extractAttributeNodeValue(doc, "finalRank", "prefix"));
-                    character.setRankNum(Integer.parseInt(extractAttributeNodeValue(doc, "finalRank", "num")));
-                    character.setFinalRank(extractTextNodeValue(doc, "finalRank"));
+                    character.setRankPrefix(extractAttributeNodeValue(doc, FINAL_RANK, "prefix"));
+                    character.setRankNum(Integer.parseInt(extractAttributeNodeValue(doc, FINAL_RANK, "num")));
+                    character.setFinalRank(extractTextNodeValue(doc, FINAL_RANK));
                     character.setSpecialAssignments(extractTextNodeValue(doc, "specialAssignments"));
                     character.setAwardsAndDecorations(extractTextNodeValue(doc, "awardsAndDecorations"));
                     character.setEquipmentQualifiedOn(extractTextNodeValue(doc, "equipmentQualifiedOn"));
@@ -113,13 +121,7 @@ public class CharacterSerializer {
                     return character;
                 }
             }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FactoryConfigurationError e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | FactoryConfigurationError | SAXException | IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -146,10 +148,10 @@ public class CharacterSerializer {
             doc = docBuilder.newDocument();
 
             DOMImplementation impl = doc.getImplementation();
-            DocumentType docType = impl.createDocumentType("character", null, "character.dtd");
+            DocumentType docType = impl.createDocumentType(CHARACTER, null, "character.dtd");
             doc.appendChild(docType);
 
-            Element root = doc.createElement("character");
+            Element root = doc.createElement(CHARACTER);
             doc.appendChild(root);
             appendTextNodeValue(root, "dateOfPreparation", character.getDateOfPreparation());
             appendTextNodeValue(root, "name", character.getName());
@@ -177,7 +179,7 @@ public class CharacterSerializer {
             appendTextNodeValue(root, "dischargeworld", character.getDischargeworld());
             appendTextNodeValue(root, "termsServed", Integer.toString(character.getTermsServed()));
             appendNode(
-                    root, "finalRank",
+                    root, FINAL_RANK,
                     new String[] { "prefix", "num" },
                     new String[] { character.getRankPrefix(), Integer.toString(character.getRankNum()) },
                     character.getFinalRank());
@@ -212,9 +214,7 @@ public class CharacterSerializer {
                         new String[] { possIter.getNameOfItem(), Integer.toString(possIter.getNumberOfItems()) },
                         null);
             }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FactoryConfigurationError e) {
+        } catch (ParserConfigurationException | FactoryConfigurationError e) {
             e.printStackTrace();
         }
         return doc;
@@ -224,14 +224,11 @@ public class CharacterSerializer {
         Document doc = createDOM(character);
         String systemValue = (new File(doc.getDoctype().getSystemId())).getName();
         try {
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            TransformerFactory factory = TransformerFactory.newInstance();
+            Transformer transformer = factory.newTransformer();
             transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, systemValue);
             transformer.transform(new DOMSource(doc), new StreamResult(file));
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerFactoryConfigurationError e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (TransformerFactoryConfigurationError | TransformerException e) {
             e.printStackTrace();
         }
     }

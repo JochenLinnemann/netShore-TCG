@@ -53,15 +53,15 @@ public class Character implements Serializable {
         /**
          * UPP - Universal Personality Profile
          */
-        private int[] upp = new int[6];
+        private int[] profile = new int[6];
 
         public UPP() {
-            upp[STR] = Dice.roll(2);
-            upp[DEX] = Dice.roll(2);
-            upp[END] = Dice.roll(2);
-            upp[INT] = Dice.roll(2);
-            upp[EDU] = Dice.roll(2);
-            upp[SOC] = Dice.roll(2);
+            profile[STR] = Dice.roll(2);
+            profile[DEX] = Dice.roll(2);
+            profile[END] = Dice.roll(2);
+            profile[INT] = Dice.roll(2);
+            profile[EDU] = Dice.roll(2);
+            profile[SOC] = Dice.roll(2);
         }
 
         public void modifyCharacteristic(int which, int mod) {
@@ -70,25 +70,25 @@ public class Character implements Serializable {
 
         public void setCharacteristic(int which, int value) {
             if (STR <= which && which <= SOC && MIN_CHAR_VAL <= value && value <= MAX_CHAR_VAL) {
-                upp[which] = value;
+                profile[which] = value;
             }
         }
 
         public int getCharacteristic(int which) {
             if (STR <= which && which <= SOC) {
-                return upp[which];
+                return profile[which];
             } else {
                 return -1;
             }
         }
 
         public String toString() {
-            return (Integer.toHexString(upp[STR]) +
-                    Integer.toHexString(upp[DEX]) +
-                    Integer.toHexString(upp[END]) +
-                    Integer.toHexString(upp[INT]) +
-                    Integer.toHexString(upp[EDU]) +
-                    Integer.toHexString(upp[SOC])).toUpperCase();
+            return (Integer.toHexString(profile[STR]) +
+                    Integer.toHexString(profile[DEX]) +
+                    Integer.toHexString(profile[END]) +
+                    Integer.toHexString(profile[INT]) +
+                    Integer.toHexString(profile[EDU]) +
+                    Integer.toHexString(profile[SOC])).toUpperCase();
         }
     }
 
@@ -128,8 +128,8 @@ public class Character implements Serializable {
      *         <p>
      *         PossessionIterator - iterate over character's posession
      */
-    public class PossessionIterator implements Iterator {
-        private Iterator iter = possessions.values().iterator();
+    public class PossessionIterator implements Iterator<Possession> {
+        private Iterator<Possession> iter = possessions.values().iterator();
         private Possession current = null;
 
         public String getNameOfItem() {
@@ -140,6 +140,7 @@ public class Character implements Serializable {
             return current.getNumberOfItems();
         }
 
+        @Override
         public void remove() {
             iter.remove();
         }
@@ -148,8 +149,8 @@ public class Character implements Serializable {
             return iter.hasNext();
         }
 
-        public Object next() {
-            current = (Possession) iter.next();
+        public Possession next() {
+            current = iter.next();
             return current;
         }
 
@@ -191,8 +192,8 @@ public class Character implements Serializable {
      *         <p>
      *         SkillIterator - iterate over character's skills
      */
-    public class SkillIterator implements Iterator {
-        private Iterator iter = skills.values().iterator();
+    public class SkillIterator implements Iterator<Skill> {
+        private Iterator<Skill> iter = skills.values().iterator();
         private Skill current = null;
 
         public String getName() {
@@ -203,6 +204,7 @@ public class Character implements Serializable {
             return current.getLevel();
         }
 
+        @Override
         public void remove() {
             iter.remove();
         }
@@ -211,8 +213,8 @@ public class Character implements Serializable {
             return iter.hasNext();
         }
 
-        public Object next() {
-            current = (Skill) iter.next();
+        public Skill next() {
+            current = iter.next();
             return current;
         }
     }
@@ -257,7 +259,7 @@ public class Character implements Serializable {
     // 18a. Primary Skill
     // 18b. Secondary Skill
     // 18c. Additional Skills
-    private TreeMap skills = new TreeMap();
+    private TreeMap<String, Skill> skills = new TreeMap<>();
     // 19a. Preferred Weapon
     private String preferredWeapon = "";
     // 19b. Preferred Pistol
@@ -272,7 +274,7 @@ public class Character implements Serializable {
     // NO PSIONICS
     private boolean musteredOut = false;
     private int cash = 0;
-    private TreeMap possessions = new TreeMap();
+    private TreeMap<String, Possession> possessions = new TreeMap<>();
 
     public Character() {
         setDateOfPreparation(DateFormat.getDateInstance(DateFormat.MEDIUM).format(creationDate));
@@ -452,7 +454,7 @@ public class Character implements Serializable {
 
     public void addSkillLevel(String name) {
         if (skills.containsKey(name)) {
-            Skill skill = (Skill) skills.get(name);
+            Skill skill = skills.get(name);
             skill.setLevel(skill.getLevel() + 1);
         } else {
             Skill skill = new Skill(name);
@@ -462,7 +464,7 @@ public class Character implements Serializable {
 
     public void removeSkillLevel(String name) {
         if (skills.containsKey(name)) {
-            Skill skill = (Skill) skills.get(name);
+            Skill skill = skills.get(name);
             skill.setLevel(skill.getLevel() - 1);
             if (skill.getLevel() < 1) {
                 skills.remove(name);
@@ -474,7 +476,7 @@ public class Character implements Serializable {
         int skillLevel = -1;
 
         if (skills.containsKey(name)) {
-            Skill skill = (Skill) skills.get(name);
+            Skill skill = skills.get(name);
             skillLevel = skill.getLevel();
         }
 
@@ -527,7 +529,7 @@ public class Character implements Serializable {
 
     public void addPossession(String nameOfItem) {
         if (possessions.containsKey(nameOfItem)) {
-            Possession item = (Possession) possessions.get(nameOfItem);
+            Possession item = possessions.get(nameOfItem);
             item.setNumberOfItems(item.getNumberOfItems() + 1);
         } else {
             Possession item = new Possession(nameOfItem);
@@ -537,7 +539,7 @@ public class Character implements Serializable {
 
     public void removePossession(String nameOfItem) {
         if (possessions.containsKey(nameOfItem)) {
-            Possession item = (Possession) possessions.get(nameOfItem);
+            Possession item = possessions.get(nameOfItem);
             item.setNumberOfItems(item.getNumberOfItems() - 1);
             if (item.getNumberOfItems() < 1) {
                 possessions.remove(nameOfItem);
@@ -549,7 +551,7 @@ public class Character implements Serializable {
         int numberOfItems = 0;
 
         if (possessions.containsKey(nameOfItem)) {
-            Possession possession = (Possession) possessions.get(nameOfItem);
+            Possession possession = possessions.get(nameOfItem);
             numberOfItems = possession.getNumberOfItems();
         }
 
@@ -561,30 +563,30 @@ public class Character implements Serializable {
     }
 
     public String toString() {
-        String skillList = "";
+        StringBuilder skillList = new StringBuilder();
         SkillIterator skillIter = skillIterator();
         while (skillIter.hasNext()) {
             skillIter.next();
-            if (!"".equals(skillList)) {
-                skillList += ", ";
+            if (skillList.length() > 0) {
+                skillList.append(", ");
             }
-            skillList += skillIter.getName() + "-" + skillIter.getLevel();
+            skillList.append(skillIter.getName() + "-" + skillIter.getLevel());
         }
-        if ("".equals(skillList)) {
-            skillList = "no skills";
+        if (skillList.length() == 0) {
+            skillList.append("no skills");
         }
 
-        String possessionList = "";
+        StringBuilder possessionList = new StringBuilder();
         PossessionIterator posIter = possessionIterator();
         while (posIter.hasNext()) {
             posIter.next();
-            if (!"".equals(possessionList)) {
-                possessionList += ", ";
+            if (possessionList.length() > 0) {
+                possessionList.append(", ");
             }
-            possessionList += posIter.getNumberOfItems() + "*" + posIter.getNameOfItem();
+            possessionList.append(posIter.getNumberOfItems() + "*" + posIter.getNameOfItem());
         }
-        if ("".equals(possessionList)) {
-            possessionList = "no possession";
+        if (possessionList.length() == 0) {
+            possessionList.append("no possession");
         }
 
         return (getTermsServed() >= 5 ? "Retired " : "Ex-") + (getRankNum() > 0 ? getRankPrefix() + " " : "")

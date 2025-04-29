@@ -61,11 +61,7 @@ public class CharacterTransformer {
         try {
             Transformer transformer = templates.newTransformer();
             transformer.transform(new DOMSource(CharacterSerializer.createDOM(character)), result);
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerFactoryConfigurationError e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (TransformerFactoryConfigurationError | TransformerException e) {
             e.printStackTrace();
         }
     }
@@ -76,13 +72,14 @@ public class CharacterTransformer {
         return writer.toString();
     }
 
-    private static TreeMap transformerTemplatesMap = new TreeMap();
+    private static TreeMap<String, Templates> transformerTemplatesMap = new TreeMap<>();
 
     public static Templates getTransformerTemplates(URL xslt) {
         String urlString = xslt.toExternalForm();
 
         if (!transformerTemplatesMap.containsKey(urlString)) {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setExpandEntityReferences(false);
             factory.setNamespaceAware(true);
             try {
                 DocumentBuilder docBuilder = factory.newDocumentBuilder();
@@ -90,20 +87,13 @@ public class CharacterTransformer {
 
                 Templates templates = TransformerFactory.newInstance().newTemplates(new DOMSource(doc));
                 transformerTemplatesMap.put(urlString, templates);
-            } catch (ParserConfigurationException e) {
-                e.printStackTrace();
-            } catch (SAXException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (TransformerConfigurationException e) {
-                e.printStackTrace();
-            } catch (TransformerFactoryConfigurationError e) {
+            } catch (ParserConfigurationException | SAXException | IOException | TransformerConfigurationException
+                    | TransformerFactoryConfigurationError e) {
                 e.printStackTrace();
             }
         }
 
-        return (Templates) transformerTemplatesMap.get(urlString);
+        return transformerTemplatesMap.get(urlString);
     }
 
     public static void initialize() {

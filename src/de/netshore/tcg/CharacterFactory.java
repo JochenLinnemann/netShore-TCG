@@ -27,6 +27,11 @@ import de.netshore.tcg.Service.SuccessNumber;
  *         CharacterFactory - generates characters as defined in CT Book 1
  */
 public class CharacterFactory {
+    private static final String AUTOMATIC_SKILL_RECEIVED = "automatic skill received: ";
+    private static final String RECEIVED_NOTHING = "received nothing";
+    private static final String MODIFYING_ORIGINAL = "modifying original ";
+    private static final String RECEIVED = "received: ";
+
     public interface GenerationListener {
         public void startGeneration(Character character);
 
@@ -210,13 +215,13 @@ public class CharacterFactory {
                 TCGApp.debug("checking for automatic service skills");
                 String skill = career.getAutomaticSkill(character.getRankNum());
                 if (skill != null) {
-                    TCGApp.debug("received: " + skill);
+                    TCGApp.debug(RECEIVED + skill);
                     if (!consumeCharacteristicModifier(skill, character)) {
                         character.addSkillLevel(skill);
                     }
-                    config.listener.infoGeneration(0, "automatic skill received: " + skill);
+                    config.listener.infoGeneration(0, AUTOMATIC_SKILL_RECEIVED + skill);
                 } else {
-                    TCGApp.debug("received nothing");
+                    TCGApp.debug(RECEIVED_NOTHING);
                 }
             }
 
@@ -242,13 +247,13 @@ public class CharacterFactory {
                         TCGApp.debug("checking for automatic skills");
                         String skill = career.getAutomaticSkill(character.getRankNum());
                         if (skill != null) {
-                            TCGApp.debug("received: " + skill);
+                            TCGApp.debug(RECEIVED + skill);
                             if (!consumeCharacteristicModifier(skill, character)) {
                                 character.addSkillLevel(skill);
                             }
-                            config.listener.infoGeneration(0, "automatic skill received: " + skill);
+                            config.listener.infoGeneration(0, AUTOMATIC_SKILL_RECEIVED + skill);
                         } else {
-                            TCGApp.debug("received nothing");
+                            TCGApp.debug(RECEIVED_NOTHING);
                         }
                     } else {
                         TCGApp.debug("commission denied");
@@ -273,13 +278,13 @@ public class CharacterFactory {
                         TCGApp.debug("checking for automatic skills");
                         String skill = career.getAutomaticSkill(character.getRankNum());
                         if (skill != null) {
-                            TCGApp.debug("received: " + skill);
+                            TCGApp.debug(RECEIVED + skill);
                             if (!consumeCharacteristicModifier(skill, character)) {
                                 character.addSkillLevel(skill);
                             }
-                            config.listener.infoGeneration(0, "automatic skill received: " + skill);
+                            config.listener.infoGeneration(0, AUTOMATIC_SKILL_RECEIVED + skill);
                         } else {
-                            TCGApp.debug("received nothing");
+                            TCGApp.debug(RECEIVED_NOTHING);
                         }
                     } else {
                         TCGApp.debug("promotion denied");
@@ -328,7 +333,7 @@ public class CharacterFactory {
                 TCGApp.debug("rolling on table " + tableNamesEdu8Plus[whichTable]);
                 String skill = skillTablesEdu8Plus[whichTable][whichEntry];
 
-                TCGApp.debug("received: " + skill);
+                TCGApp.debug(RECEIVED + skill);
                 if (!consumeCharacteristicModifier(skill, character)) {
                     character.addSkillLevel(skill);
                 }
@@ -428,6 +433,9 @@ public class CharacterFactory {
                         character.setCash(cashTotal);
                         config.listener.infoGeneration(0, "received cash: Cr" + cash);
                         break;
+                    default:
+                        // nothing
+                        break;
                 }
             }
         }
@@ -453,51 +461,51 @@ public class CharacterFactory {
         boolean consumed = true;
 
         if (possibleModifier.startsWith("Str+")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.STR));
             character.modifyCharacteristic(UPP.STR, Integer.parseInt(possibleModifier.substring(4)));
         } else if (possibleModifier.startsWith("Dex+")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.DEX));
             character.modifyCharacteristic(UPP.DEX, Integer.parseInt(possibleModifier.substring(4)));
         } else if (possibleModifier.startsWith("End+")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.END));
             character.modifyCharacteristic(UPP.END, Integer.parseInt(possibleModifier.substring(4)));
         } else if (possibleModifier.startsWith("Int+")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.INT));
             character.modifyCharacteristic(UPP.INT, Integer.parseInt(possibleModifier.substring(4)));
         } else if (possibleModifier.startsWith("Edu+")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.EDU));
             character.modifyCharacteristic(UPP.EDU, Integer.parseInt(possibleModifier.substring(4)));
         } else if (possibleModifier.startsWith("Soc+")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.SOC));
             character.modifyCharacteristic(UPP.SOC, Integer.parseInt(possibleModifier.substring(4)));
         } else if (possibleModifier.startsWith("Str-")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.STR));
             character.modifyCharacteristic(UPP.STR, Integer.parseInt(possibleModifier.substring(3)));
         } else if (possibleModifier.startsWith("Dex-")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.DEX));
             character.modifyCharacteristic(UPP.DEX, Integer.parseInt(possibleModifier.substring(3)));
         } else if (possibleModifier.startsWith("End-")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.END));
             character.modifyCharacteristic(UPP.END, Integer.parseInt(possibleModifier.substring(3)));
         } else if (possibleModifier.startsWith("Int-")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.INT));
             character.modifyCharacteristic(UPP.INT, Integer.parseInt(possibleModifier.substring(3)));
         } else if (possibleModifier.startsWith("Edu-")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.EDU));
             character.modifyCharacteristic(UPP.EDU, Integer.parseInt(possibleModifier.substring(3)));
         } else if (possibleModifier.startsWith("Soc-")) {
-            TCGApp.debug("modifying original " + possibleModifier.substring(0, 3) + " of "
+            TCGApp.debug(MODIFYING_ORIGINAL + possibleModifier.substring(0, 3) + " of "
                     + character.getCharacteristic(UPP.SOC));
             character.modifyCharacteristic(UPP.SOC, Integer.parseInt(possibleModifier.substring(3)));
         } else {
@@ -512,7 +520,7 @@ public class CharacterFactory {
         // term 4 - 7: aging level 1
         // term 8 - 11: aging level 2
         // term 12+ : aging level 3+
-        int agingLevel = (int) Math.floor(character.getTermsServed() / 4);
+        int agingLevel = (int) Math.floor(character.getTermsServed() / (double) 4);
         if (agingLevel < 0) {
             agingLevel = 0;
         } else if (agingLevel > 3) {
@@ -527,9 +535,6 @@ public class CharacterFactory {
         int endReduction = 0;
         int intReduction = 0;
         switch (agingLevel) {
-            case 0:
-                // no aging;
-                break;
             case 1:
                 strAging = new SuccessNumber(8);
                 dexAging = new SuccessNumber(7);
@@ -555,6 +560,10 @@ public class CharacterFactory {
                 dexReduction = -2;
                 endReduction = -2;
                 intReduction = -1;
+                break;
+            case 0:
+            default:
+                // no aging;
                 break;
         }
         if (strAging != null) {

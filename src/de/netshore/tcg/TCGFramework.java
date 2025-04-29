@@ -29,7 +29,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -49,6 +48,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.JWindow;
+import javax.swing.WindowConstants;
 
 import de.netshore.tcg.xml.CharacterSerializer;
 import de.netshore.tcg.xml.CharacterTransformer;
@@ -59,12 +59,12 @@ import de.netshore.tcg.xml.CharacterTransformer;
 public class TCGFramework {
     public static final String APP_TITLE = "netShore TCG";
     public static final String COPYRIGHT = "<html>" +
-            "Copyright &copy; 2005 Jochen Linnemann" +
+            "Copyright &copy; 2025 Jochen Linnemann" +
             "<br>" +
             "netShore &reg; is a registered trademark of Jochen Linnemann" +
             "</html>";
     public static final String APP_INFO = "<html>" +
-            "netShore TCG v0.9 (http://www.netshore.de/tcg)" +
+            "netShore TCG v0.10 (http://www.netshore.de/tcg)" +
             "</html>";
 
     private static TCGFramework singleton = null;
@@ -125,7 +125,7 @@ public class TCGFramework {
         /*
          * Creating the About box
          */
-        aboutBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        aboutBox.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         aboutBox.setResizable(false);
         /*
          * // top label
@@ -188,7 +188,7 @@ public class TCGFramework {
         splashScreen.setContentPane(panel);
         splashScreen.pack();
         splashScreen.setLocationRelativeTo(null);
-        splashScreen.show();
+        splashScreen.setVisible(true);
 
         CharacterTransformer.initialize();
 
@@ -199,7 +199,7 @@ public class TCGFramework {
         if (mainFrame == null) {
             mainFrame = container;
 
-            container.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            container.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             container.addWindowListener(frameWatch);
             container.setTitle(APP_TITLE);
             container.setJMenuBar(menuBar);
@@ -271,18 +271,20 @@ public class TCGFramework {
     private void checkModified() {
         for (int i = 0; i < tabs.getTabCount(); i++) {
             Component component = tabs.getComponentAt(i);
-            if (component instanceof CharacterPanel) {
-                checkModified((CharacterPanel) component, tabs.getTitleAt(i));
+            if (component instanceof CharacterPanel cp) {
+                checkModified(cp, tabs.getTitleAt(i));
             }
         }
     }
 
     private class TCGFrameListener extends WindowAdapter {
+        @Override
         public void windowClosing(WindowEvent e) {
             checkModified();
             mainFrame.dispose();
         }
 
+        @Override
         public void windowClosed(WindowEvent e) {
             mainFrame.dispose();
             System.exit(0);
@@ -294,13 +296,13 @@ public class TCGFramework {
     private abstract class TCGAction extends AbstractAction {
         public TCGAction(char mnemonic, String name, boolean enabled) {
             super(name);
-            putValue(Action.MNEMONIC_KEY, new Integer(mnemonic));
+            putValue(Action.MNEMONIC_KEY, mnemonic);
             setEnabled(enabled);
         }
 
         public TCGAction(char mnemonic, String name, Icon icon, boolean enabled) {
             super(name, icon);
-            putValue(Action.MNEMONIC_KEY, new Integer(mnemonic));
+            putValue(Action.MNEMONIC_KEY, mnemonic);
             setEnabled(enabled);
         }
     }
@@ -310,10 +312,10 @@ public class TCGFramework {
         public void actionPerformed(ActionEvent event) {
             int option = JOptionPane.showOptionDialog(
                     mainFrame,
-                    "Decide on how to create the new character." +
-                            "\n'Random Character Generation' will start automatic character generation (all decisions are made by your computer)."
-                            +
-                            "\n'Interactive Character Creation' will let you decide on important topics (just as if you were rolling up the character).",
+                    """
+                            Decide on how to create the new character.
+                            'Random Character Generation' will start automatic character generation (all decisions are made by your computer).
+                            'Interactive Character Creation' will let you decide on important topics (just as if you were rolling up the character).""",
                     "Choose Character Creation Method",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
@@ -349,16 +351,10 @@ public class TCGFramework {
                 File file = fileChooser.getSelectedFile();
                 if (file != null && file.exists()) {
                     if (fileChooser.getFileFilter() == CharacterPanel.tcdFilter) {
-                        try {
-                            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+                        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
                             Character character = (Character) ois.readObject();
-                            ois.close();
                             addTab(file, character);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (ClassNotFoundException e) {
+                        } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     } else if (fileChooser.getFileFilter() == CharacterPanel.xmlFilter) {
@@ -386,8 +382,8 @@ public class TCGFramework {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
             if (component != null) {
-                if (component instanceof CharacterPanel) {
-                    checkModified((CharacterPanel) component, tabs.getTitleAt(tabs.getSelectedIndex()));
+                if (component instanceof CharacterPanel cp) {
+                    checkModified(cp, tabs.getTitleAt(tabs.getSelectedIndex()));
                 }
                 tabs.remove(component);
                 if (tabs.getTabCount() == 0) {
@@ -406,8 +402,8 @@ public class TCGFramework {
             false) {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
-            if (component instanceof CharacterPanel) {
-                ((CharacterPanel) component).save();
+            if (component instanceof CharacterPanel cp) {
+                cp.save();
             }
         }
     };
@@ -415,8 +411,8 @@ public class TCGFramework {
             new ImageIcon(getClass().getResource("/icons/SaveAs16.gif")), false) {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
-            if (component instanceof CharacterPanel) {
-                ((CharacterPanel) component).saveAs();
+            if (component instanceof CharacterPanel cp) {
+                cp.saveAs();
             }
         }
     };
@@ -430,14 +426,14 @@ public class TCGFramework {
         public void actionPerformed(ActionEvent event) {
             int index = tabs.getSelectedIndex();
             Component component = tabs.getComponentAt(index);
-            if (component instanceof CharacterPanel) {
+            if (component instanceof CharacterPanel cp) {
                 final CharacterDialog dialog = new CharacterDialog(mainFrame, true);
                 dialog.setCharacter(((CharacterPanel) component).getCharacter());
                 dialog.pack();
                 dialog.setLocationRelativeTo(component);
-                dialog.show();
-                ((CharacterPanel) component).setCharacter(dialog.getCharacter());
-                ((CharacterPanel) component).setModified(true);
+                dialog.setVisible(true);
+                cp.setCharacter(dialog.getCharacter());
+                cp.setModified(true);
                 String tabTitle = dialog.getCharacter().getName();
                 if (tabTitle == null || tabTitle.trim().equals("")) {
                     tabTitle = "Unnamed";
@@ -450,8 +446,8 @@ public class TCGFramework {
             new ImageIcon(getClass().getResource("/icons/Export16.gif")), false) {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
-            if (component instanceof CharacterPanel) {
-                ((CharacterPanel) component).export();
+            if (component instanceof CharacterPanel cp) {
+                cp.export();
             }
         }
     };
@@ -466,6 +462,7 @@ public class TCGFramework {
         public void actionPerformed(ActionEvent event) {
             if (imgSplash != null) {
                 imgSplash.addMouseListener(new MouseAdapter() {
+                    @Override
                     public void mouseClicked(MouseEvent e) {
                         aboutBox.dispose();
                     }
@@ -475,7 +472,7 @@ public class TCGFramework {
             }
             aboutBox.pack();
             aboutBox.setLocationRelativeTo(mainFrame);
-            aboutBox.show();
+            aboutBox.setVisible(true);
         }
     };
     /*
