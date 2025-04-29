@@ -59,7 +59,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new BorderLayout());
         listPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        //listPanel.setPreferredSize(new Dimension(200, 300));
+        // listPanel.setPreferredSize(new Dimension(200, 300));
         listPanel.add(historyScroller, BorderLayout.CENTER);
         serviceHistoryDisplay.setVisibleRowCount(12);
         serviceHistoryDisplay.setPrototypeCellValue("netShore TCG is about to generate a new character.");
@@ -115,8 +115,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 options,
-                null
-        );
+                null);
         for (int i = 0; i < options.length; i++) {
             if (options[i].equals(selection)) {
                 return i;
@@ -142,8 +141,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 options,
-                null
-        );
+                null);
         for (int i = 0; i < options.length; i++) {
             if (options[i].equals(selection)) {
                 return i;
@@ -162,8 +160,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 null,
-                null
-        ) == JOptionPane.YES_OPTION;
+                null) == JOptionPane.YES_OPTION;
     }
 
     public int chooseBenefitsOrCash(String[] benefits, int[] cashTable) {
@@ -182,8 +179,7 @@ public class CharacterCreationDialog extends CharacterDialog implements Generati
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 options,
-                null
-        );
+                null);
         for (int i = 0; i < options.length; i++) {
             if (options[i].equals(selection)) {
                 return i;

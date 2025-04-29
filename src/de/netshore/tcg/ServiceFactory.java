@@ -67,7 +67,7 @@ public class ServiceFactory {
         DocumentType docType = servicesDocument.getDoctype();
         String dtName = docType.getName();
         if ("services".equals(dtName) || // document may contain several services
-                "service".equals(dtName)) {  // document contains only one service
+                "service".equals(dtName)) { // document contains only one service
             NodeList serviceList = servicesDocument.getElementsByTagName("service");
             int serviceCount = serviceList.getLength();
             services = new Service[serviceCount];
@@ -111,7 +111,8 @@ public class ServiceFactory {
                             }
                         }
                     } else if ("skills".equals(tagName)) {
-                        services[i].setSkillEligibility(Integer.parseInt(getNamedAttributeValue(childNode, "eligibility")));
+                        services[i].setSkillEligibility(
+                                Integer.parseInt(getNamedAttributeValue(childNode, "eligibility")));
 
                         NodeList skillsListList = childNode.getChildNodes();
                         int skillsListCount = skillsListList.getLength();

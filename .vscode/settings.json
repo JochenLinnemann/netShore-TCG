@@ -1,0 +1,7 @@
+{
+  "java.saveActions.organizeImports": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "dotnet.formatting.organizeImportsOnFormat": true,
+  "java.cleanup.actions": ["renameFileToType", "organizeImports"]
+}

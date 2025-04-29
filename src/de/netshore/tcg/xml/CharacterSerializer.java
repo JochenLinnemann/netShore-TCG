@@ -52,7 +52,8 @@ public class CharacterSerializer {
     public static Character read(File file) {
         try {
             DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = docBuilder.parse(new FileInputStream(file), CharacterSerializer.class.getResource("").toExternalForm());
+            Document doc = docBuilder.parse(new FileInputStream(file),
+                    CharacterSerializer.class.getResource("").toExternalForm());
 
             Element root = doc.getDocumentElement();
             if ("character".equals(root.getTagName())) {
@@ -61,12 +62,18 @@ public class CharacterSerializer {
 
                     character.setDateOfPreparation(extractTextNodeValue(doc, "dateOfPreparation"));
                     character.setName(extractTextNodeValue(doc, "name"));
-                    character.setCharacteristic(Character.UPP.STR, Integer.parseInt(extractAttributeNodeValue(doc, "str", "val")));
-                    character.setCharacteristic(Character.UPP.DEX, Integer.parseInt(extractAttributeNodeValue(doc, "dex", "val")));
-                    character.setCharacteristic(Character.UPP.END, Integer.parseInt(extractAttributeNodeValue(doc, "end", "val")));
-                    character.setCharacteristic(Character.UPP.INT, Integer.parseInt(extractAttributeNodeValue(doc, "int", "val")));
-                    character.setCharacteristic(Character.UPP.EDU, Integer.parseInt(extractAttributeNodeValue(doc, "edu", "val")));
-                    character.setCharacteristic(Character.UPP.SOC, Integer.parseInt(extractAttributeNodeValue(doc, "soc", "val")));
+                    character.setCharacteristic(Character.UPP.STR,
+                            Integer.parseInt(extractAttributeNodeValue(doc, "str", "val")));
+                    character.setCharacteristic(Character.UPP.DEX,
+                            Integer.parseInt(extractAttributeNodeValue(doc, "dex", "val")));
+                    character.setCharacteristic(Character.UPP.END,
+                            Integer.parseInt(extractAttributeNodeValue(doc, "end", "val")));
+                    character.setCharacteristic(Character.UPP.INT,
+                            Integer.parseInt(extractAttributeNodeValue(doc, "int", "val")));
+                    character.setCharacteristic(Character.UPP.EDU,
+                            Integer.parseInt(extractAttributeNodeValue(doc, "edu", "val")));
+                    character.setCharacteristic(Character.UPP.SOC,
+                            Integer.parseInt(extractAttributeNodeValue(doc, "soc", "val")));
                     character.setNobleTitle(extractTextNodeValue(doc, "nobleTitle"));
                     character.setMilitaryRank(extractTextNodeValue(doc, "militaryRank"));
                     character.setBirthdate(extractTextNodeValue(doc, "birthdate"));
@@ -148,24 +155,18 @@ public class CharacterSerializer {
             appendTextNodeValue(root, "name", character.getName());
             Element upp = doc.createElement("upp");
             root.appendChild(upp);
-            appendNode(upp, "str", new String[]{"val"},
-                    new String[]{Integer.toString(character.getCharacteristic(Character.UPP.STR))}, null
-            );
-            appendNode(upp, "dex", new String[]{"val"},
-                    new String[]{Integer.toString(character.getCharacteristic(Character.UPP.DEX))}, null
-            );
-            appendNode(upp, "end", new String[]{"val"},
-                    new String[]{Integer.toString(character.getCharacteristic(Character.UPP.END))}, null
-            );
-            appendNode(upp, "int", new String[]{"val"},
-                    new String[]{Integer.toString(character.getCharacteristic(Character.UPP.INT))}, null
-            );
-            appendNode(upp, "edu", new String[]{"val"},
-                    new String[]{Integer.toString(character.getCharacteristic(Character.UPP.EDU))}, null
-            );
-            appendNode(upp, "soc", new String[]{"val"},
-                    new String[]{Integer.toString(character.getCharacteristic(Character.UPP.SOC))}, null
-            );
+            appendNode(upp, "str", new String[] { "val" },
+                    new String[] { Integer.toString(character.getCharacteristic(Character.UPP.STR)) }, null);
+            appendNode(upp, "dex", new String[] { "val" },
+                    new String[] { Integer.toString(character.getCharacteristic(Character.UPP.DEX)) }, null);
+            appendNode(upp, "end", new String[] { "val" },
+                    new String[] { Integer.toString(character.getCharacteristic(Character.UPP.END)) }, null);
+            appendNode(upp, "int", new String[] { "val" },
+                    new String[] { Integer.toString(character.getCharacteristic(Character.UPP.INT)) }, null);
+            appendNode(upp, "edu", new String[] { "val" },
+                    new String[] { Integer.toString(character.getCharacteristic(Character.UPP.EDU)) }, null);
+            appendNode(upp, "soc", new String[] { "val" },
+                    new String[] { Integer.toString(character.getCharacteristic(Character.UPP.SOC)) }, null);
             appendTextNodeValue(root, "nobleTitle", character.getNobleTitle());
             appendTextNodeValue(root, "militaryRank", character.getMilitaryRank());
             appendTextNodeValue(root, "birthdate", character.getBirthdate());
@@ -177,10 +178,9 @@ public class CharacterSerializer {
             appendTextNodeValue(root, "termsServed", Integer.toString(character.getTermsServed()));
             appendNode(
                     root, "finalRank",
-                    new String[]{"prefix", "num"},
-                    new String[]{character.getRankPrefix(), Integer.toString(character.getRankNum())},
-                    character.getFinalRank()
-            );
+                    new String[] { "prefix", "num" },
+                    new String[] { character.getRankPrefix(), Integer.toString(character.getRankNum()) },
+                    character.getFinalRank());
             appendTextNodeValue(root, "specialAssignments", character.getSpecialAssignments());
             appendTextNodeValue(root, "awardsAndDecorations", character.getAwardsAndDecorations());
             appendTextNodeValue(root, "equipmentQualifiedOn", character.getEquipmentQualifiedOn());
@@ -191,18 +191,16 @@ public class CharacterSerializer {
                 skillIter.next();
                 appendNode(
                         skills, "skill",
-                        new String[]{"name", "level"},
-                        new String[]{skillIter.getName(), Integer.toString(skillIter.getLevel())},
-                        null
-                );
+                        new String[] { "name", "level" },
+                        new String[] { skillIter.getName(), Integer.toString(skillIter.getLevel()) },
+                        null);
             }
             appendTextNodeValue(root, "preferredWeapon", character.getPreferredWeapon());
             appendNode(
                     root, "cashStatus",
-                    new String[]{"val"},
-                    new String[]{Integer.toString(character.getCash())},
-                    null
-            );
+                    new String[] { "val" },
+                    new String[] { Integer.toString(character.getCash()) },
+                    null);
             Element personalPossessions = doc.createElement("personalPossessions");
             root.appendChild(personalPossessions);
             Character.PossessionIterator possIter = character.possessionIterator();
@@ -210,10 +208,9 @@ public class CharacterSerializer {
                 possIter.next();
                 appendNode(
                         personalPossessions, "item",
-                        new String[]{"name", "count"},
-                        new String[]{possIter.getNameOfItem(), Integer.toString(possIter.getNumberOfItems())},
-                        null
-                );
+                        new String[] { "name", "count" },
+                        new String[] { possIter.getNameOfItem(), Integer.toString(possIter.getNumberOfItems()) },
+                        null);
             }
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -243,7 +240,8 @@ public class CharacterSerializer {
         appendNode(parent, tagName, new String[0], new String[0], text);
     }
 
-    private static void appendNode(Element parent, String tagName, String[] attrNames, String[] attrValues, String text) {
+    private static void appendNode(Element parent, String tagName, String[] attrNames, String[] attrValues,
+            String text) {
         Document doc = parent.getOwnerDocument();
         Element child = doc.createElement(tagName);
         parent.appendChild(child);

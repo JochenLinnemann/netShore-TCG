@@ -43,15 +43,15 @@ public class TCGApp {
 
         Locale.setDefault(Locale.US);
 
-        //mainFeatureTest(args);
-        //mainBatchTest(args);
-        //mainDialogTest(args);
+        // mainFeatureTest(args);
+        // mainBatchTest(args);
+        // mainDialogTest(args);
         mainFrameTest(args);
     }
 
     public static void debug(String msg) {
-        //getLogger().fine(msg);
-        //System.out.println("[DBG] " + msg);
+        // getLogger().fine(msg);
+        // System.out.println("[DBG] " + msg);
     }
 
     private static Logger getLogger() {
@@ -73,7 +73,8 @@ public class TCGApp {
 
     private static void mainFeatureTest(String[] args) {
         String pattern = "Testing argument array length maximum: {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16} {17} {18} {19} {20} {21} {22} {23} {24} {25} {26} {27} {28} {29} {30}";
-        String[] arguments = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+        String[] arguments = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+                "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
 
         MessageFormat msgFormat = new MessageFormat(pattern);
         System.out.println(msgFormat.format(arguments));
@@ -82,12 +83,12 @@ public class TCGApp {
     private static void mainBatchTest(String[] args) {
         Service[] services = ServiceFactory.getServices("book1.xml");
 
-        //System.out.println("Number of available Services: " + services.length);
-        //System.out.println("");
-        //for (int i = 0; i < services.length; i++) {
-        //    System.out.println(services[i]);
-        //    System.out.println("");
-        //}
+        // System.out.println("Number of available Services: " + services.length);
+        // System.out.println("");
+        // for (int i = 0; i < services.length; i++) {
+        // System.out.println(services[i]);
+        // System.out.println("");
+        // }
 
         int numberOfCharacters = 100;
         int deathToll = 0;
@@ -107,8 +108,10 @@ public class TCGApp {
             }
         }
         System.out.println("");
-        System.out.println("Of " + numberOfCharacters + " characters " + deathToll + " died (i.e. " + (100.0 * deathToll / numberOfCharacters) + "%)");
-        System.out.println((numberOfCharacters - deathToll) + " surviving characters received Cr" + (cashTotal / (numberOfCharacters - deathToll)) + " in avarage");
+        System.out.println("Of " + numberOfCharacters + " characters " + deathToll + " died (i.e. "
+                + (100.0 * deathToll / numberOfCharacters) + "%)");
+        System.out.println((numberOfCharacters - deathToll) + " surviving characters received Cr"
+                + (cashTotal / (numberOfCharacters - deathToll)) + " in avarage");
     }
 
     private static void mainDialogTest(String[] args) {

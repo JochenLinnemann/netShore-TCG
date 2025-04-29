@@ -206,10 +206,10 @@ public class CharacterPanel extends JPanel {
                 }
                 exportFile.createNewFile();
                 /*
-	            FileWriter writer = new FileWriter(exportFile);
-	            writer.write(getFormattedData());
-	            writer.close();
-	            */
+                 * FileWriter writer = new FileWriter(exportFile);
+                 * writer.write(getFormattedData());
+                 * writer.close();
+                 */
                 FileOutputStream fos = new FileOutputStream(exportFile);
                 CharacterTransformer.transform(getCharacter(), fos, CharacterTransformer.DEFAULT_EXPORT);
                 fos.close();
@@ -278,7 +278,8 @@ public class CharacterPanel extends JPanel {
             if (!"".equals(possessions)) {
                 possessions += ", ";
             }
-            possessions += possIter.getNameOfItem() + (possIter.getNumberOfItems() > 1 ? " (" + possIter.getNumberOfItems() + ")" : "");
+            possessions += possIter.getNameOfItem()
+                    + (possIter.getNumberOfItems() > 1 ? " (" + possIter.getNumberOfItems() + ")" : "");
         }
         arguments[27] = sanitize(possessions);
 
@@ -291,7 +292,7 @@ public class CharacterPanel extends JPanel {
     }
 
     private void updateViewer() {
-        //viewer.setText(getFormattedData());
+        // viewer.setText(getFormattedData());
         String data = getFormattedData2();
         data = data.replaceFirst("http-equiv=\"Content-Type\"", "http-equiv=\"Ignore:Content-Type\"");
         try {

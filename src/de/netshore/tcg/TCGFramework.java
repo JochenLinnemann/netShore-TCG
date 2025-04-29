@@ -58,16 +58,14 @@ import de.netshore.tcg.xml.CharacterTransformer;
  */
 public class TCGFramework {
     public static final String APP_TITLE = "netShore TCG";
-    public static final String COPYRIGHT =
-            "<html>" +
-                    "Copyright &copy; 2005 Jochen Linnemann" +
-                    "<br>" +
-                    "netShore &reg; is a registered trademark of Jochen Linnemann" +
-                    "</html>";
-    public static final String APP_INFO =
-            "<html>" +
-                    "netShore TCG v0.9 (http://www.netshore.de/tcg)" +
-                    "</html>";
+    public static final String COPYRIGHT = "<html>" +
+            "Copyright &copy; 2005 Jochen Linnemann" +
+            "<br>" +
+            "netShore &reg; is a registered trademark of Jochen Linnemann" +
+            "</html>";
+    public static final String APP_INFO = "<html>" +
+            "netShore TCG v0.9 (http://www.netshore.de/tcg)" +
+            "</html>";
 
     private static TCGFramework singleton = null;
 
@@ -123,59 +121,60 @@ public class TCGFramework {
         viewPanel.setBackground(Color.GRAY);
         viewPanel.setBorder(BorderFactory.createLoweredBevelBorder());
         viewPanel.setPreferredSize(new Dimension(700, 700));
-        
+
         /*
          * Creating the About box
          */
         aboutBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         aboutBox.setResizable(false);
         /*
-        // top label
-        JPanel titlePanel = new JPanel();
-        titlePanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-        titlePanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
-        titlePanel.setBackground(Color.BLACK);
-        titlePanel.add(new JLabel("<html><font color=\"white\" size=\"+1\"><b>" + APP_TITLE + "</b></font></html>"));
-        // info and copyright
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        infoPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        infoPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-        infoPanel.setAlignmentY(JComponent.TOP_ALIGNMENT);
-        JLabel appInfo = new JLabel(APP_INFO);
-        appInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoPanel.add(appInfo);
-        JLabel copyright = new JLabel(COPYRIGHT);
-        copyright.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoPanel.add(copyright);
-        infoPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        JTextArea fairUse = new JTextArea();
-        fairUse.setAlignmentX(Component.LEFT_ALIGNMENT);
-        fairUse.setEditable(false);
-        fairUse.setRows(12);
-        fairUse.setColumns(80);
-        fairUse.setLineWrap(true);
-        fairUse.setWrapStyleWord(true);
-        fairUse.setText(
-        		"The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2003 Far Future Enterprises. Traveller is a registered trademark of Far Future Enterprises. Far Future permits web sites and fanzines for this game, provided it contains this notice, that Far Future is notified, and subject to a withdrawal of permission on 90 days notice. The contents of this site are for personal, non-commercial use only. Any use of Far Future Enterprises's copyrighted material or trademarks anywhere on this web site and its files should not be viewed as a challenge to those copyrights or trademarks. In addition, any program/articles/file on this site cannot be republished or distributed without the consent of the author who contributed it."
-        		);
-        JScrollPane fairUseScroller = new JScrollPane(fairUse);
-        fairUseScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoPanel.add(fairUseScroller);
-        // command button row
-        JPanel cmdPanel = new JPanel();
-        cmdPanel.setAlignmentX(JComponent.RIGHT_ALIGNMENT);
-        cmdPanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
-        cmdPanel.add(new JButton(actAboutBoxClose));
-        // putting it all together
-        */
+         * // top label
+         * JPanel titlePanel = new JPanel();
+         * titlePanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+         * titlePanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+         * titlePanel.setBackground(Color.BLACK);
+         * titlePanel.add(new JLabel("<html><font color=\"white\" size=\"+1\"><b>" +
+         * APP_TITLE + "</b></font></html>"));
+         * // info and copyright
+         * JPanel infoPanel = new JPanel();
+         * infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+         * infoPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+         * infoPanel.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+         * infoPanel.setAlignmentY(JComponent.TOP_ALIGNMENT);
+         * JLabel appInfo = new JLabel(APP_INFO);
+         * appInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+         * infoPanel.add(appInfo);
+         * JLabel copyright = new JLabel(COPYRIGHT);
+         * copyright.setAlignmentX(Component.LEFT_ALIGNMENT);
+         * infoPanel.add(copyright);
+         * infoPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+         * JTextArea fairUse = new JTextArea();
+         * fairUse.setAlignmentX(Component.LEFT_ALIGNMENT);
+         * fairUse.setEditable(false);
+         * fairUse.setRows(12);
+         * fairUse.setColumns(80);
+         * fairUse.setLineWrap(true);
+         * fairUse.setWrapStyleWord(true);
+         * fairUse.setText(
+         * "The Traveller game in all forms is owned by Far Future Enterprises. Copyright 1977 - 2003 Far Future Enterprises. Traveller is a registered trademark of Far Future Enterprises. Far Future permits web sites and fanzines for this game, provided it contains this notice, that Far Future is notified, and subject to a withdrawal of permission on 90 days notice. The contents of this site are for personal, non-commercial use only. Any use of Far Future Enterprises's copyrighted material or trademarks anywhere on this web site and its files should not be viewed as a challenge to those copyrights or trademarks. In addition, any program/articles/file on this site cannot be republished or distributed without the consent of the author who contributed it."
+         * );
+         * JScrollPane fairUseScroller = new JScrollPane(fairUse);
+         * fairUseScroller.setAlignmentX(Component.LEFT_ALIGNMENT);
+         * infoPanel.add(fairUseScroller);
+         * // command button row
+         * JPanel cmdPanel = new JPanel();
+         * cmdPanel.setAlignmentX(JComponent.RIGHT_ALIGNMENT);
+         * cmdPanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+         * cmdPanel.add(new JButton(actAboutBoxClose));
+         * // putting it all together
+         */
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
         /*
-        contentPane.add(titlePanel, BorderLayout.NORTH);
-        contentPane.add(infoPanel, BorderLayout.CENTER);
-        contentPane.add(cmdPanel, BorderLayout.SOUTH);
-        */
+         * contentPane.add(titlePanel, BorderLayout.NORTH);
+         * contentPane.add(infoPanel, BorderLayout.CENTER);
+         * contentPane.add(cmdPanel, BorderLayout.SOUTH);
+         */
         aboutBox.setContentPane(contentPane);
     }
 
@@ -262,8 +261,7 @@ public class TCGFramework {
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     null,
-                    null
-            );
+                    null);
             if (option == JOptionPane.YES_OPTION) {
                 cp.save();
             }
@@ -307,25 +305,25 @@ public class TCGFramework {
         }
     }
 
-    private Action actNew = new TCGAction('n', "New...", new ImageIcon(getClass().getResource("/icons/New16.gif")), true) {
+    private Action actNew = new TCGAction('n', "New...", new ImageIcon(getClass().getResource("/icons/New16.gif")),
+            true) {
         public void actionPerformed(ActionEvent event) {
             int option = JOptionPane.showOptionDialog(
                     mainFrame,
                     "Decide on how to create the new character." +
-                            "\n'Random Character Generation' will start automatic character generation (all decisions are made by your computer)." +
+                            "\n'Random Character Generation' will start automatic character generation (all decisions are made by your computer)."
+                            +
                             "\n'Interactive Character Creation' will let you decide on important topics (just as if you were rolling up the character).",
                     "Choose Character Creation Method",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
-                    new Object[]{"Random Character Generation", "Interactive Character Creation"},
-                    null
-            );
+                    new Object[] { "Random Character Generation", "Interactive Character Creation" },
+                    null);
             if (option != JOptionPane.CLOSED_OPTION) {
                 CharacterFactory.GeneratorConfig config = new CharacterFactory.GeneratorConfig();
                 Character character = CharacterFactory.generateCharacter(config,
-                        (option == 0 ? null : new CharacterCreationDialog(mainFrame))
-                );
+                        (option == 0 ? null : new CharacterCreationDialog(mainFrame)));
                 if (character.isAlive() || config.injuryPreferred) {
                     addTab(null, character);
                 } else if (option == 0) {
@@ -334,13 +332,13 @@ public class TCGFramework {
                             "Sorry, but the character died during Random Character Generation." +
                                     "\nYou will have to start anew.",
                             "Character Died",
-                            JOptionPane.INFORMATION_MESSAGE
-                    );
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
     };
-    private Action actOpen = new TCGAction('o', "Open...", new ImageIcon(getClass().getResource("/icons/Open16.gif")), true) {
+    private Action actOpen = new TCGAction('o', "Open...", new ImageIcon(getClass().getResource("/icons/Open16.gif")),
+            true) {
         public void actionPerformed(ActionEvent event) {
             final JFileChooser fileChooser = new JFileChooser();
             fileChooser.setAcceptAllFileFilterUsed(false);
@@ -377,8 +375,7 @@ public class TCGFramework {
                                     mainFrame,
                                     "Unknown file format, expected 'XML Traveller Character Data'.",
                                     "Cannot read Character Data",
-                                    JOptionPane.INFORMATION_MESSAGE
-                            );
+                                    JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
                 }
@@ -405,7 +402,8 @@ public class TCGFramework {
             }
         }
     };
-    private Action actSave = new TCGAction('s', "Save", new ImageIcon(getClass().getResource("/icons/Save16.gif")), false) {
+    private Action actSave = new TCGAction('s', "Save", new ImageIcon(getClass().getResource("/icons/Save16.gif")),
+            false) {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
             if (component instanceof CharacterPanel) {
@@ -413,7 +411,8 @@ public class TCGFramework {
             }
         }
     };
-    private Action actSaveAs = new TCGAction('a', "Save As...", new ImageIcon(getClass().getResource("/icons/SaveAs16.gif")), false) {
+    private Action actSaveAs = new TCGAction('a', "Save As...",
+            new ImageIcon(getClass().getResource("/icons/SaveAs16.gif")), false) {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
             if (component instanceof CharacterPanel) {
@@ -426,7 +425,8 @@ public class TCGFramework {
             mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
         }
     };
-    private Action actEdit = new TCGAction('e', "Edit...", new ImageIcon(getClass().getResource("/icons/Edit16.gif")), false) {
+    private Action actEdit = new TCGAction('e', "Edit...", new ImageIcon(getClass().getResource("/icons/Edit16.gif")),
+            false) {
         public void actionPerformed(ActionEvent event) {
             int index = tabs.getSelectedIndex();
             Component component = tabs.getComponentAt(index);
@@ -446,7 +446,8 @@ public class TCGFramework {
             }
         }
     };
-    private Action actExport = new TCGAction('x', "Export...", new ImageIcon(getClass().getResource("/icons/Export16.gif")), false) {
+    private Action actExport = new TCGAction('x', "Export...",
+            new ImageIcon(getClass().getResource("/icons/Export16.gif")), false) {
         public void actionPerformed(ActionEvent event) {
             Component component = tabs.getSelectedComponent();
             if (component instanceof CharacterPanel) {
@@ -454,12 +455,14 @@ public class TCGFramework {
             }
         }
     };
-    private Action actHelpContents = new TCGAction('c', "Contents", new ImageIcon(getClass().getResource("/icons/Help16.gif")), false) {
+    private Action actHelpContents = new TCGAction('c', "Contents",
+            new ImageIcon(getClass().getResource("/icons/Help16.gif")), false) {
         public void actionPerformed(ActionEvent event) {
             // TODO : give help
         }
     };
-    private Action actAbout = new TCGAction('a', "About " + APP_TITLE, new ImageIcon(getClass().getResource("/icons/About16.gif")), true) {
+    private Action actAbout = new TCGAction('a', "About " + APP_TITLE,
+            new ImageIcon(getClass().getResource("/icons/About16.gif")), true) {
         public void actionPerformed(ActionEvent event) {
             if (imgSplash != null) {
                 imgSplash.addMouseListener(new MouseAdapter() {
@@ -476,10 +479,10 @@ public class TCGFramework {
         }
     };
     /*
-    private Action actAboutBoxClose = new TCGAction('c', "Close", true) {
-        public void actionPerformed(ActionEvent event) {
-            aboutBox.dispose();
-        }
-    };
-    */
+     * private Action actAboutBoxClose = new TCGAction('c', "Close", true) {
+     * public void actionPerformed(ActionEvent event) {
+     * aboutBox.dispose();
+     * }
+     * };
+     */
 }

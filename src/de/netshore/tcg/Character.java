@@ -587,10 +587,11 @@ public class Character implements Serializable {
             possessionList = "no possession";
         }
 
-        return
-                (getTermsServed() >= 5 ? "Retired " : "Ex-") + (getRankNum() > 0 ? getRankPrefix() + " " : "") + getFinalRank() +
-                        "     " + upp + "     Age " + (18 + getTermsServed() * 4) + "     " + getTermsServed() + " terms     Cr" + getCash() +
-                        "\n" + skillList +
-                        "\n" + possessionList;
+        return (getTermsServed() >= 5 ? "Retired " : "Ex-") + (getRankNum() > 0 ? getRankPrefix() + " " : "")
+                + getFinalRank() +
+                "     " + upp + "     Age " + (18 + getTermsServed() * 4) + "     " + getTermsServed() + " terms     Cr"
+                + getCash() +
+                "\n" + skillList +
+                "\n" + possessionList;
     }
 }

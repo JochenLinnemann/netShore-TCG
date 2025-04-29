@@ -125,8 +125,7 @@ public class CharacterDialog extends JDialog {
 
         contentPane.add(tabPane, new GridBagConstraints(0, 7, 4, 1,
                 0.5, 1.0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH,
-                new Insets(2, 2, 2, 2), 0, 0)
-        );
+                new Insets(2, 2, 2, 2), 0, 0));
 
         txtArea15.setRows(4);
         txtArea16.setRows(4);
@@ -140,28 +139,27 @@ public class CharacterDialog extends JDialog {
         tabPane.addTab(label_27.getText(), createScrollPane(listedField27));
 
         contentPane.add(new JButton(new AbstractAction("OK") {
-                    public void actionPerformed(ActionEvent e) {
-                        //character.setDateOfPreparation(field_01.getText());
-                        character.setName(field_02.getText());
-                        character.setNobleTitle(field_04.getText());
-                        character.setMilitaryRank(field_05.getText());
-                        character.setBirthdate(field_06.getText());
-                        character.setAgeModifiers(field_07.getText());
-                        character.setBirthworld(field_08.getText());
-                        character.setBranch(field_10.getText());
-                        character.setDischargeworld(field_11.getText());
-                        character.setSpecialAssignments(txtArea15.getText());
-                        character.setAwardsAndDecorations(txtArea16.getText());
-                        character.setEquipmentQualifiedOn(txtArea17.getText());
-                        //txtArea18.setText("skills");
-                        character.setPreferredWeapon(field_19.getText());
-                        //txtArea27.setText("possessions");
-                        dispose();
-                    }
-                }), new GridBagConstraints(3, 8, 1, 1,
-                        0.5, 0, GridBagConstraints.LINE_END, GridBagConstraints.NONE,
-                        new Insets(2, 2, 2, 2), 0, 0)
-        );
+            public void actionPerformed(ActionEvent e) {
+                // character.setDateOfPreparation(field_01.getText());
+                character.setName(field_02.getText());
+                character.setNobleTitle(field_04.getText());
+                character.setMilitaryRank(field_05.getText());
+                character.setBirthdate(field_06.getText());
+                character.setAgeModifiers(field_07.getText());
+                character.setBirthworld(field_08.getText());
+                character.setBranch(field_10.getText());
+                character.setDischargeworld(field_11.getText());
+                character.setSpecialAssignments(txtArea15.getText());
+                character.setAwardsAndDecorations(txtArea16.getText());
+                character.setEquipmentQualifiedOn(txtArea17.getText());
+                // txtArea18.setText("skills");
+                character.setPreferredWeapon(field_19.getText());
+                // txtArea27.setText("possessions");
+                dispose();
+            }
+        }), new GridBagConstraints(3, 8, 1, 1,
+                0.5, 0, GridBagConstraints.LINE_END, GridBagConstraints.NONE,
+                new Insets(2, 2, 2, 2), 0, 0));
     }
 
     private void addCombination(JLabel label, JComponent field, int col, int row, int colspan, int rowspan) {
@@ -212,7 +210,9 @@ public class CharacterDialog extends JDialog {
         field_12.setEditable(false);
         field_13.setText((character.getRankNum() > 0 ? character.getFinalRank() : ""));
         field_13.setEditable(false);
-        field_14.setText((character.getRetirementPay() > 0 ? "Cr" + NumberFormat.getIntegerInstance().format(new Integer(character.getRetirementPay())) : "not retired"));
+        field_14.setText((character.getRetirementPay() > 0
+                ? "Cr" + NumberFormat.getIntegerInstance().format(new Integer(character.getRetirementPay()))
+                : "not retired"));
         field_14.setEditable(false);
         txtArea15.setText(character.getSpecialAssignments());
         txtArea16.setText(character.getAwardsAndDecorations());
@@ -231,7 +231,8 @@ public class CharacterDialog extends JDialog {
         PossessionIterator possIter = character.possessionIterator();
         while (possIter.hasNext()) {
             possIter.next();
-            possessions.add(possIter.getNameOfItem() + (possIter.getNumberOfItems() > 1 ? " (" + possIter.getNumberOfItems() + ")" : ""));
+            possessions.add(possIter.getNameOfItem()
+                    + (possIter.getNumberOfItems() > 1 ? " (" + possIter.getNumberOfItems() + ")" : ""));
         }
         listedField27.setListData(possessions);
     }
