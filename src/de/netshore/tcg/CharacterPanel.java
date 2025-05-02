@@ -81,7 +81,7 @@ public class CharacterPanel extends JPanel {
     private File file = null;
     private Character character = null;
     private boolean modified = false;
-    private String initialStyle = "";
+    private StringBuilder initialStyle = new StringBuilder();
     private MessageFormat data = null;
     private JEditorPane viewer = new JEditorPane();
     private JScrollPane scroll = new JScrollPane(viewer);
@@ -99,7 +99,7 @@ public class CharacterPanel extends JPanel {
             do {
                 charCount = reader.read(buffer);
                 if (charCount > 0) {
-                    initialStyle += String.copyValueOf(buffer, 0, charCount);
+                    initialStyle.append(String.copyValueOf(buffer, 0, charCount));
                 }
             } while (charCount > -1);
             reader = new InputStreamReader(getClass().getResourceAsStream("template.html"));
@@ -237,7 +237,7 @@ public class CharacterPanel extends JPanel {
     private String getFormattedData() {
         Object[] arguments = new Object[28];
 
-        arguments[0] = initialStyle;
+        arguments[0] = initialStyle.toString();
         arguments[1] = character.getDateOfPreparation();
         arguments[2] = sanitize(character.getName());
         arguments[3] = sanitize(character.uppAsString());
@@ -255,16 +255,16 @@ public class CharacterPanel extends JPanel {
         arguments[15] = sanitize(character.getSpecialAssignments());
         arguments[16] = sanitize(character.getAwardsAndDecorations());
         arguments[17] = sanitize(character.getEquipmentQualifiedOn());
-        String skills = "";
+        StringBuilder skills = new StringBuilder();
         SkillIterator skillIter = character.skillIterator();
         while (skillIter.hasNext()) {
             skillIter.next();
-            if (!"".equals(skills)) {
-                skills += ", ";
+            if (skills.length() > 0) {
+                skills.append(", ");
             }
-            skills += skillIter.getName() + "-" + skillIter.getLevel();
+            skills.append(skillIter.getName() + "-" + skillIter.getLevel());
         }
-        arguments[18] = sanitize(skills);
+        arguments[18] = sanitize(skills.toString());
         arguments[19] = sanitize(character.getPreferredWeapon());
         arguments[20] = Integer.valueOf(character.getPossessionNumberOfItems("Travellers' Aid"));
         arguments[21] = "";
@@ -273,17 +273,17 @@ public class CharacterPanel extends JPanel {
         arguments[24] = "";
         arguments[25] = arguments[2];
         arguments[26] = Integer.valueOf(character.getCash());
-        String possessions = "";
+        StringBuilder possessions = new StringBuilder();
         PossessionIterator possIter = character.possessionIterator();
         while (possIter.hasNext()) {
             possIter.next();
-            if (!"".equals(possessions)) {
-                possessions += ", ";
+            if (possessions.length() > 0) {
+                possessions.append(", ");
             }
-            possessions += possIter.getNameOfItem()
-                    + (possIter.getNumberOfItems() > 1 ? " (" + possIter.getNumberOfItems() + ")" : "");
+            possessions.append(possIter.getNameOfItem()
+                    + (possIter.getNumberOfItems() > 1 ? " (" + possIter.getNumberOfItems() + ")" : ""));
         }
-        arguments[27] = sanitize(possessions);
+        arguments[27] = sanitize(possessions.toString());
 
         return data.format(arguments);
     }
