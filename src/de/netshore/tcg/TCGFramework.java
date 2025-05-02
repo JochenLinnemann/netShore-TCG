@@ -296,13 +296,13 @@ public class TCGFramework {
     private abstract class TCGAction extends AbstractAction {
         public TCGAction(char mnemonic, String name, boolean enabled) {
             super(name);
-            putValue(Action.MNEMONIC_KEY, mnemonic);
+            putValue(Action.MNEMONIC_KEY, java.lang.Character.getNumericValue(mnemonic));
             setEnabled(enabled);
         }
 
         public TCGAction(char mnemonic, String name, Icon icon, boolean enabled) {
             super(name, icon);
-            putValue(Action.MNEMONIC_KEY, mnemonic);
+            putValue(Action.MNEMONIC_KEY, java.lang.Character.getNumericValue(mnemonic));
             setEnabled(enabled);
         }
     }
