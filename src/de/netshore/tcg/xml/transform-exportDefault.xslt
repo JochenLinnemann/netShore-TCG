@@ -285,7 +285,7 @@
                             <div>
                                 <xsl:for-each select="character/skills/skill">
                                     <xsl:value-of select="./@name"/>-<xsl:value-of select="./@level"/>
-                                    <xsl:if test="position() != last()">,</xsl:if>
+                                    <xsl:if test="position() != last()">, </xsl:if>
                                 </xsl:for-each>
                             </div>
                         </td>
@@ -408,9 +408,8 @@
                             <div>
                                 <xsl:for-each select="character/personalPossessions/item">
                                     <xsl:value-of select="./@name"/>
-                                    <xsl:if test="./@count &gt; 1">(<xsl:value-of select="./@count"/>)
-                                    </xsl:if>
-                                    <xsl:if test="position() != last()">,</xsl:if>
+                                    <xsl:if test="./@count &gt; 1"> (<xsl:value-of select="./@count"/>)</xsl:if>
+                                    <xsl:if test="position() != last()">, </xsl:if>
                                 </xsl:for-each>
                             </div>
                         </td>
